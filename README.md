@@ -4,6 +4,14 @@ Independent T1/T2/T3 calibration and a guided clean-and-validate workflow for th
 
 This project extends the native offset-saving logic and reuses the stock heating, wiping, docking, and probing routines. Recalibrating one secondary tool preserves the other three tools' saved positions and applied offsets. T0 remains the reference: its button displays a warning to use stock **Multi-Toolhead Calibration** for all four tools.
 
+## Acknowledgements and license
+
+Thank you to [Paxx](https://github.com/paxx12-snapmaker-u1) for [Snapmaker U1 Extended Firmware](https://github.com/paxx12-snapmaker-u1/SnapmakerU1-Extended-Firmware) and its documented overlay and documentation conventions, which informed this project's organization. The calibration implementation builds on [Snapmaker's U1 Klipper](https://github.com/Snapmaker/u1-klipper) and [Klipper](https://github.com/Klipper3d/klipper); their existing copyright and license notices are preserved.
+
+**Modified work, dated 2026-10-12:** this project changes native calibration persistence and offset handling, and adds the custom macros described below. It is distributed under **GPL-3.0** with source and the full [license](LICENSE). See [NOTICE](NOTICE.md) for the modification record and attribution. It is independently maintained by this project; affiliation with or endorsement by Paxx, Snapmaker, or Klipper is not implied.
+
+## Tested status
+
 **Status:** live validated on one U1 running `1.4.1.6_20260608141446`. The native patch targets the exact source hashes recorded in [the manifest](tests/native/manifest.json). Other builds require source review and adaptation. Firmware image packaging has not been built or flashed.
 
 ## Features

@@ -13,8 +13,8 @@
     },
     {
       "path": "CHANGELOG.md",
-      "bytes": 1163,
-      "sha256": "985f82f0cf1919cb05ee971b79c915757c55c128f08485bba5659bcbe589b365"
+      "bytes": 1615,
+      "sha256": "48f24ca093892a71917dd9c64cfaadf6f282f4b0e159d2f957331e1d8ca4aa45"
     },
     {
       "path": "docs/changes.md",
@@ -68,8 +68,8 @@
     },
     {
       "path": "NOTICE.md",
-      "bytes": 1251,
-      "sha256": "e78202a77b545748937f9f02de99996e32a446521f71e5207b774100a64ce44d"
+      "bytes": 2812,
+      "sha256": "6cbda08bec1bef43446fef75832e6d27ff98bd50db09ea5db929a7395b687bbd"
     },
     {
       "path": "overlays/mods/tooloffsets/01-native/patches/home/lava/klipper/01_independent_tool_offsets.patch",
@@ -84,12 +84,12 @@
     {
       "path": "privacy-report.json",
       "bytes": 251,
-      "sha256": "372d1f9e0c59f6d738e98fcf268d728b8d3a264da658a2bf95f226dac439d417"
+      "sha256": "96cd4012861e94f2c87363f02759366e23b3164ca74cd49da4df1523c7df9808"
     },
     {
       "path": "README.md",
-      "bytes": 4389,
-      "sha256": "9950ca45b1315146eba0bf979b3d20730d3173f808ed85004ed4ff227b35031c"
+      "bytes": 5362,
+      "sha256": "a2eda12af25f1b67cd14a2ca4c6d1db7998b892899be14bf820ae50e6a59ff36"
     },
     {
       "path": "requirements-dev.txt",

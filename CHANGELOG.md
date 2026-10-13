@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+### Attribution review — 2026-10-12
+
+- Make the Paxx, Snapmaker, and Klipper acknowledgements prominent in the README.
+- Add a dated notice identifying the native calibration modifications and clarify independent maintenance and source provenance.
+- Preserve the existing GPL-3.0 license and upstream notices. This review changes documentation and package records only; native Python and macro payloads remain identical to the validated deployment.
+
 ### Added
 
 - Independent T1/T2/T3 saves with a persisted shared reference, guarded native command, atomic persistence, and unchanged other-tool offsets.

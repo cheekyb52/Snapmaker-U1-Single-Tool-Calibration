@@ -4,19 +4,30 @@
     {
       "path": "klippy/kinematics/extruder.py",
       "baseline_sha256": "c890d77eb25f843155c63d940573971c665f353093d2c2a7ef971ec5bacc5f13",
-      "modified_sha256": "b7e5962b3523cd447ed51c202776873e8e7505547312b674583a9d3884f7f22a"
+      "modified_sha256": "9425ea928bbaf49677dd8362436ca9643899fb0213801b7b73549a38bc8b385f",
+      "live_tested_sha256": "b7e5962b3523cd447ed51c202776873e8e7505547312b674583a9d3884f7f22a"
     },
     {
       "path": "klippy/extras/extruder_config_bak.py",
       "baseline_sha256": "56be84ec9b7f30cfa496e86591fe5e767ce79d716fd93fdf112dabc25001e5da",
-      "modified_sha256": "dab3320f19c0f06d9907507348c1801f092ec117098699e7f3c73c71e1b5c4f4"
+      "modified_sha256": "212e57af8eddb781f40f17cdc95f47408db4bc363fae0388887a46da508a4f80",
+      "live_tested_sha256": "dab3320f19c0f06d9907507348c1801f092ec117098699e7f3c73c71e1b5c4f4"
     },
     {
       "path": "klippy/extras/probe_inductance_coil.py",
       "baseline_sha256": "4dbdc60a3d1c0add084d595cccbc3e4b86d491c986cfa4234c2701f8a5243011",
-      "modified_sha256": "ffef26f484baaae678e36f6ec6bc73f690bf6877e63f33e0d7e2d5d13249cab6"
+      "modified_sha256": "d24092eb5f23d0cd53bf2e478e8b505cb47a3d076cd656eda7ae423c0176e159",
+      "live_tested_sha256": "ffef26f484baaae678e36f6ec6bc73f690bf6877e63f33e0d7e2d5d13249cab6"
     }
   ],
   "diff": "overlays/mods/tooloffsets/01-native/patches/home/lava/klipper/01_independent_tool_offsets.patch",
-  "fixture_provenance": "Generic firmware source fixtures; no printer configuration or user settings"
+  "fixture_provenance": "Generic firmware source fixtures; no printer configuration or user settings",
+  "project_version": "0.1.0",
+  "updated": "2026-10-12",
+  "macro": {
+    "path": "overlays/mods/tooloffsets/02-macros/root/usr/local/share/firmware-config/extended/klipper/70_tool_offsets.cfg",
+    "sha256": "5d73c5f489bccd124a6343f8b32968d52f29f8ab353cc45607f0ba556ac42ccd",
+    "live_tested_sha256": "d62e5e666b534b48efa0b6d658931908e793eeb6696c9ae6eb559cf96883a79a"
+  },
+  "version_metadata_note": "Comment-only banners added after live acceptance; Python AST and parsed macro configuration unchanged."
 }

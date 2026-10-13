@@ -6,6 +6,8 @@ title: Modified Files
 
 The printer implementation changes three native Python files and adds one macro CFG. The patch is scoped to this calibration feature.
 
+Project version `0.1.0` adds version/date comments to those distributed files and the patch header. The native manifest preserves the original live-tested hashes alongside the versioned hashes. Executable Python and parsed macro settings remain unchanged; this metadata update was not installed on the test printer.
+
 | Printer file | Change | Result |
 | --- | --- | --- |
 | `klippy/kinematics/extruder.py` | Add opt-in independent saving, use a persisted shared reference when present, and apply refreshed origins only to the active tool | T1/T2/T3 can change their own saved/applied offsets without recentering the other tools |

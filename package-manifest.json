@@ -13,13 +13,13 @@
     },
     {
       "path": "CHANGELOG.md",
-      "bytes": 1615,
-      "sha256": "48f24ca093892a71917dd9c64cfaadf6f282f4b0e159d2f957331e1d8ca4aa45"
+      "bytes": 2206,
+      "sha256": "47577c5cf9944477b96fe3b1f3ddb7a43672dd9c5416a5f4d5ee9374d25973c3"
     },
     {
       "path": "docs/changes.md",
-      "bytes": 3294,
-      "sha256": "a9e2641e539e111f0007bb58f080b65d9cb3acb0e93c1ab32b47dc854a8f242b"
+      "bytes": 3611,
+      "sha256": "6f4965dce6ca66d81855c2fb01f0030efb869dd82e0970076161835a7690570d"
     },
     {
       "path": "docs/codex-handoff.md",
@@ -28,8 +28,8 @@
     },
     {
       "path": "docs/development.md",
-      "bytes": 2952,
-      "sha256": "33d1e6e012e21a284ddc61f1f0588f153a9b1b592d31ba1f6b55ffc40fafed80"
+      "bytes": 3550,
+      "sha256": "0e6cfe7ce1600aa66d8c25581195915d61c4b3f233a8001ee3f2c992f1ecb761"
     },
     {
       "path": "docs/implementation.md",
@@ -53,13 +53,13 @@
     },
     {
       "path": "docs/validation.md",
-      "bytes": 3494,
-      "sha256": "30ed1ebba52fe8086fac3d892ff2cc295b8846f9dcd8fd61ee1f508f33d35e3e"
+      "bytes": 3921,
+      "sha256": "56c3552db4d72553d28b475fccd4c24597381b4912e1296934eddc148c10d3a0"
     },
     {
       "path": "docs/work-instructions.md",
-      "bytes": 5732,
-      "sha256": "2f932f714387a3b5d99e45162a5b4ef974a423c387241c9e3e4078eece36a48f"
+      "bytes": 6069,
+      "sha256": "1c6135717f0bfdf4fdac7205b45056e00f88c09b7d0e68d03ebef7b25746c141"
     },
     {
       "path": "LICENSE",
@@ -73,23 +73,23 @@
     },
     {
       "path": "overlays/mods/tooloffsets/01-native/patches/home/lava/klipper/01_independent_tool_offsets.patch",
-      "bytes": 16128,
-      "sha256": "d81e5c669987aee663bb25565968a53589a3eb3877df25d0df34bc2ed97613bf"
+      "bytes": 17322,
+      "sha256": "cd71d9b9d66d23a63800c856a6287a0ecb4dbef2bd9080313d33eaa8f8d7b1e8"
     },
     {
       "path": "overlays/mods/tooloffsets/02-macros/root/usr/local/share/firmware-config/extended/klipper/70_tool_offsets.cfg",
-      "bytes": 17506,
-      "sha256": "d62e5e666b534b48efa0b6d658931908e793eeb6696c9ae6eb559cf96883a79a"
+      "bytes": 17743,
+      "sha256": "5d73c5f489bccd124a6343f8b32968d52f29f8ab353cc45607f0ba556ac42ccd"
     },
     {
       "path": "privacy-report.json",
       "bytes": 251,
-      "sha256": "96cd4012861e94f2c87363f02759366e23b3164ca74cd49da4df1523c7df9808"
+      "sha256": "59eb871fd79e2e5edb5eb5291650506f1673ce206a538876e3fa1f73c4968e31"
     },
     {
       "path": "README.md",
-      "bytes": 5362,
-      "sha256": "a2eda12af25f1b67cd14a2ca4c6d1db7998b892899be14bf820ae50e6a59ff36"
+      "bytes": 5412,
+      "sha256": "e8289317df50325444ee3af2ac555090aede5b51c7a310a7b7f6a0ee9521604b"
     },
     {
       "path": "requirements-dev.txt",
@@ -133,28 +133,28 @@
     },
     {
       "path": "tests/native/manifest.json",
-      "bytes": 1032,
-      "sha256": "83d912723b490f57b8cf2b20de994aacb6fc52d15a8c28681a330937a1236e07"
+      "bytes": 1861,
+      "sha256": "fdd1266b1fab57779ed0e66232bb47c34dd84dac1551816ca2cc29a7a9fe7c87"
     },
     {
       "path": "tests/native/modified/klippy/extras/extruder_config_bak.py",
-      "bytes": 18087,
-      "sha256": "dab3320f19c0f06d9907507348c1801f092ec117098699e7f3c73c71e1b5c4f4"
+      "bytes": 18324,
+      "sha256": "212e57af8eddb781f40f17cdc95f47408db4bc363fae0388887a46da508a4f80"
     },
     {
       "path": "tests/native/modified/klippy/extras/probe_inductance_coil.py",
-      "bytes": 100186,
-      "sha256": "ffef26f484baaae678e36f6ec6bc73f690bf6877e63f33e0d7e2d5d13249cab6"
+      "bytes": 100423,
+      "sha256": "d24092eb5f23d0cd53bf2e478e8b505cb47a3d076cd656eda7ae423c0176e159"
     },
     {
       "path": "tests/native/modified/klippy/kinematics/extruder.py",
-      "bytes": 120123,
-      "sha256": "b7e5962b3523cd447ed51c202776873e8e7505547312b674583a9d3884f7f22a"
+      "bytes": 120360,
+      "sha256": "9425ea928bbaf49677dd8362436ca9643899fb0213801b7b73549a38bc8b385f"
     },
     {
       "path": "tests/native/test_native.py",
-      "bytes": 28991,
-      "sha256": "9f15f4f39a78a2ab16009c8a0aaa71e0d01867a86b98a84bcd90a034ab9e8f5a"
+      "bytes": 29547,
+      "sha256": "bc4fa5567296eaa427223dbac17ce721c2a838736013d373d0e33b9243289c85"
     },
     {
       "path": "tests/test_macros.py",
@@ -168,8 +168,8 @@
     },
     {
       "path": "tools/prepare_install.py",
-      "bytes": 5793,
-      "sha256": "d6a200fb6313b7f8d94d634249990d5a16ed98659793285e40eb216358f27101"
+      "bytes": 6024,
+      "sha256": "5ffeea4d9471a29df6ae4810b3c8c960ba57d7a3343bf7829689325c27e77bda"
     }
   ]
 }

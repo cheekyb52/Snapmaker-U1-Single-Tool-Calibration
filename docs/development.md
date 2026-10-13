@@ -6,6 +6,8 @@ title: Development
 
 ## Local checks
 
+The current project version/date appears at the top of the README, macro CFG, native patch, and modified native source files. Update those labels and `tests/native/manifest.json` together whenever distributed files change. Keep prior live-tested hashes distinct from current package hashes when only headers change, then regenerate the privacy report and package inventory.
+
 Use Python 3.10 or later in a local development environment:
 
 ```sh
@@ -22,7 +24,7 @@ The suite exercises the actual changed native methods with hardware dependencies
 
 `overlays/mods/tooloffsets` contains two numbered stages: native patches, then the macro template. This layout follows [Paxx's development conventions](https://github.com/paxx12-snapmaker-u1/SnapmakerU1-Extended-Firmware/blob/develop/docs/development.md).
 
-The patch directory maps to the installed Klipper root. The native patch uses `a/klippy/...` / `b/klippy/...` paths for `-p1` application there. The template root mirrors the firmware-config template location. Paxx's [firmware builder](https://github.com/paxx12-snapmaker-u1/SnapmakerU1-Extended-Firmware/blob/develop/scripts/create_firmware.sh) applies patch stages without fuzz and copies root payloads. Its [Makefile](https://github.com/paxx12-snapmaker-u1/SnapmakerU1-Extended-Firmware/blob/develop/Makefile) treats hyphens as profile/mod separators, hence the mod name `tooloffsets`.
+The patch directory maps to the installed Klipper root. The native patch uses `a/klippy/...` / `b/klippy/...` paths for `-p1` application there. Its leading version comments are metadata; [GNU patch supports leading headers](https://www.gnu.org/software/diffutils/manual/html_node/Merging-with-patch.html), and the offline staging tool accepts comment-only preambles. The template root mirrors the firmware-config template location. Paxx's [firmware builder](https://github.com/paxx12-snapmaker-u1/SnapmakerU1-Extended-Firmware/blob/develop/scripts/create_firmware.sh) applies patch stages without fuzz and copies root payloads. Its [Makefile](https://github.com/paxx12-snapmaker-u1/SnapmakerU1-Extended-Firmware/blob/develop/Makefile) treats hyphens as profile/mod separators, hence the mod name `tooloffsets`.
 
 This repository does not include or modify Paxx's firmware builder. The overlay has not been integrated into a full firmware image or flashed. A future owner-controlled build must establish compatible sources and inspect its resulting payload. No upstream submission is implied.
 

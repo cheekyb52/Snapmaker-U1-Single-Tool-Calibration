@@ -1,5 +1,7 @@
 # Snapmaker U1 Single Tool Calibration
 
+**Project version: 0.1.0 | Updated: 2026-10-12**
+
 Independent T1/T2/T3 calibration and a guided clean-and-validate workflow for the Snapmaker U1.
 
 This project extends the native offset-saving logic and reuses the stock heating, wiping, docking, and probing routines. Recalibrating one secondary tool preserves the other three tools' saved positions and applied offsets. T0 remains the reference: its button displays a warning to use stock **Multi-Toolhead Calibration** for all four tools.

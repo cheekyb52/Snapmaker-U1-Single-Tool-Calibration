@@ -6,6 +6,8 @@ title: Macro Work Instructions
 
 ## Before starting
 
+For troubleshooting, report the project version/date printed at the top of `70_tool_offsets.cfg` and your installed firmware build. Compare that version with the repository README; the package manifest provides exact file hashes when two copies need to be compared. Copies from the original live test may predate these version banners.
+
 Use a printer that is idle, with no paused print or active virtual-SD job. Clear the bed and tool-change area. Confirm that the calibration ring is accessible and the tools have suitable filament loaded for the stock wiping routine.
 
 For single-tool calibration, the reference tool must have unchanged hardware and a trustworthy calibration. T0 is the default reference. If T0's hotend or reference calibration changed, use stock **Multi-Toolhead Calibration** for all four tools.

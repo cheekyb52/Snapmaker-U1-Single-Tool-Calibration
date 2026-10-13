@@ -548,11 +548,19 @@ class PatchChecks(unittest.TestCase):
 
     def test_manifest_hashes_and_all_python_syntax(self):
         manifest = json.loads((REVIEW / 'manifest.json').read_text())
+        banner = ('# Project version: %s | Updated: %s'
+                  % (manifest['project_version'], manifest['updated']))
+        for relative in [manifest['diff'], manifest['macro']['path']]:
+            self.assertIn(banner, (ROOT / relative).read_text().splitlines()[:5])
+        macro = (ROOT / manifest['macro']['path']).read_bytes()
+        self.assertEqual(hashlib.sha256(macro).hexdigest(), manifest['macro']['sha256'])
         for item in manifest['files']:
             for folder, key in [('baseline', 'baseline_sha256'), ('modified', 'modified_sha256')]:
                 data = (REVIEW / folder / item['path']).read_bytes()
                 self.assertEqual(hashlib.sha256(data).hexdigest(), item[key])
                 compile(data, item['path'], 'exec')
+                if folder == 'modified':
+                    self.assertIn(banner, data.decode('utf-8').splitlines()[:5])
 
     def test_unified_diff_applies_exactly_to_baseline(self):
         manifest = json.loads((REVIEW / 'manifest.json').read_text())

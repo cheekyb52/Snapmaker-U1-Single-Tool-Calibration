@@ -9,7 +9,7 @@ import sys
 ROOT = Path(__file__).resolve().parents[1]
 MACRO = ROOT / ('overlays/mods/tooloffsets/02-macros/root/usr/local/share/'
                 'firmware-config/extended/klipper/70_tool_offsets.cfg')
-MACRO_SHA256 = 'd62e5e666b534b48efa0b6d658931908e793eeb6696c9ae6eb559cf96883a79a'
+MACRO_SHA256 = '5d73c5f489bccd124a6343f8b32968d52f29f8ab353cc45607f0ba556ac42ccd'
 EXPECTED = {'klippy/kinematics/extruder.py',
             'klippy/extras/extruder_config_bak.py',
             'klippy/extras/probe_inductance_coil.py'}
@@ -66,7 +66,9 @@ def prepare(source_root, output):
         raise ValueError('Unexpected native manifest scope')
     patch_text = (ROOT / manifest['diff']).read_text(encoding='utf-8')
     blocks = patch_text.split('diff --git ')
-    if blocks[0] or len(blocks) != 4:
+    if (len(blocks) != 4
+            or any(line.strip() and not line.startswith('#')
+                   for line in blocks[0].splitlines())):
         raise ValueError('Unexpected patch scope')
     staged = {}
     for block in blocks[1:]:

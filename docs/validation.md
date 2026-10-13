@@ -10,6 +10,8 @@ One Snapmaker U1 running build `1.4.1.6_20260608141446` was tested. Its exact in
 
 No debug or factory mode was used. The operator drove calibration buttons, manual cleaning, and plate confirmation. Source/config backups and installed hashes were verified.
 
+Project version `0.1.0` adds comment-only version/date banners to the native sources and CFG after that live acceptance. The manifest records both the live-tested hashes and current versioned hashes. Python AST and parsed macro configuration comparisons confirm the implementation is unchanged; offline staging and regression checks cover the versioned payload. No printer installation was performed for this metadata update.
+
 ## Acceptance matrix
 
 | Case | Result | Evidence |

@@ -1,3 +1,8 @@
+# Snapmaker U1 Single Tool Calibration
+# Project version: 0.1.0 | Updated: 2026-10-12
+# Project: https://github.com/cheekyb52/Snapmaker-U1-Single-Tool-Calibration
+# Calibration-project modifications; GPL-3.0, see LICENSE and NOTICE.md.
+
 # Code for handling printer nozzle extruders
 #
 # Copyright (C) 2016-2022  Kevin O'Connor <kevin@koconnor.net>

@@ -1,0 +1,21 @@
+# Private device data and local build output
+.local/
+backups/
+firmware/
+tmp/
+build/
+venv/
+.venv/
+.env
+.env.*
+*.pem
+*.key
+*.jpg
+*.jpeg
+*.png
+*.gif
+*.webp
+*.mp4
+*.log
+__pycache__/
+*.pyc

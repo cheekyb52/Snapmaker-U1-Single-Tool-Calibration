@@ -1,0 +1,22 @@
+{
+  "firmware_observed": "1.4.1.6_20260608141446",
+  "files": [
+    {
+      "path": "klippy/kinematics/extruder.py",
+      "baseline_sha256": "c890d77eb25f843155c63d940573971c665f353093d2c2a7ef971ec5bacc5f13",
+      "modified_sha256": "b7e5962b3523cd447ed51c202776873e8e7505547312b674583a9d3884f7f22a"
+    },
+    {
+      "path": "klippy/extras/extruder_config_bak.py",
+      "baseline_sha256": "56be84ec9b7f30cfa496e86591fe5e767ce79d716fd93fdf112dabc25001e5da",
+      "modified_sha256": "dab3320f19c0f06d9907507348c1801f092ec117098699e7f3c73c71e1b5c4f4"
+    },
+    {
+      "path": "klippy/extras/probe_inductance_coil.py",
+      "baseline_sha256": "4dbdc60a3d1c0add084d595cccbc3e4b86d491c986cfa4234c2701f8a5243011",
+      "modified_sha256": "ffef26f484baaae678e36f6ec6bc73f690bf6877e63f33e0d7e2d5d13249cab6"
+    }
+  ],
+  "diff": "overlays/mods/tooloffsets/01-native/patches/home/lava/klipper/01_independent_tool_offsets.patch",
+  "fixture_provenance": "Generic firmware source fixtures; no printer configuration or user settings"
+}

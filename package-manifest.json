@@ -1,0 +1,175 @@
+{
+  "scope": "Calibration project only",
+  "files": [
+    {
+      "path": ".gitignore",
+      "bytes": 184,
+      "sha256": "d307b4271f55c2e7c7385eb40ba49445ada10e088f763f318c0830b1c8309951"
+    },
+    {
+      "path": "AGENTS.md",
+      "bytes": 2226,
+      "sha256": "ae5b2bb608ee02d8b1ce93be494ab613567588a35b44e877bc312a35bf715f0c"
+    },
+    {
+      "path": "CHANGELOG.md",
+      "bytes": 1163,
+      "sha256": "985f82f0cf1919cb05ee971b79c915757c55c128f08485bba5659bcbe589b365"
+    },
+    {
+      "path": "docs/changes.md",
+      "bytes": 3294,
+      "sha256": "a9e2641e539e111f0007bb58f080b65d9cb3acb0e93c1ab32b47dc854a8f242b"
+    },
+    {
+      "path": "docs/codex-handoff.md",
+      "bytes": 6624,
+      "sha256": "8ce30521cb0dab1dace56871f392b475cfa454629063ccdff2f69a34056505e3"
+    },
+    {
+      "path": "docs/development.md",
+      "bytes": 2952,
+      "sha256": "33d1e6e012e21a284ddc61f1f0588f153a9b1b592d31ba1f6b55ffc40fafed80"
+    },
+    {
+      "path": "docs/implementation.md",
+      "bytes": 4317,
+      "sha256": "9a33848e80ef12309a818fb3710dabfad6e9bdf6fc216f029b9234eb6f49d0f4"
+    },
+    {
+      "path": "docs/index.md",
+      "bytes": 933,
+      "sha256": "eaea6fa7f40c186f95372c33cb7e45146b14aab20a60a083edafa6d1d3a95792"
+    },
+    {
+      "path": "docs/installation.md",
+      "bytes": 5412,
+      "sha256": "7c3d9222e3f1c071a497b8ece4704384391ce2d7bb68e39d26980ddc3f676d7c"
+    },
+    {
+      "path": "docs/rollback.md",
+      "bytes": 2904,
+      "sha256": "c8176f24311d392dbbe6a2d287b1ead939f3b558ed97d536f92684281aa01a31"
+    },
+    {
+      "path": "docs/validation.md",
+      "bytes": 3494,
+      "sha256": "30ed1ebba52fe8086fac3d892ff2cc295b8846f9dcd8fd61ee1f508f33d35e3e"
+    },
+    {
+      "path": "docs/work-instructions.md",
+      "bytes": 5732,
+      "sha256": "2f932f714387a3b5d99e45162a5b4ef974a423c387241c9e3e4078eece36a48f"
+    },
+    {
+      "path": "LICENSE",
+      "bytes": 35149,
+      "sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986"
+    },
+    {
+      "path": "NOTICE.md",
+      "bytes": 1251,
+      "sha256": "e78202a77b545748937f9f02de99996e32a446521f71e5207b774100a64ce44d"
+    },
+    {
+      "path": "overlays/mods/tooloffsets/01-native/patches/home/lava/klipper/01_independent_tool_offsets.patch",
+      "bytes": 16128,
+      "sha256": "d81e5c669987aee663bb25565968a53589a3eb3877df25d0df34bc2ed97613bf"
+    },
+    {
+      "path": "overlays/mods/tooloffsets/02-macros/root/usr/local/share/firmware-config/extended/klipper/70_tool_offsets.cfg",
+      "bytes": 17506,
+      "sha256": "d62e5e666b534b48efa0b6d658931908e793eeb6696c9ae6eb559cf96883a79a"
+    },
+    {
+      "path": "privacy-report.json",
+      "bytes": 251,
+      "sha256": "372d1f9e0c59f6d738e98fcf268d728b8d3a264da658a2bf95f226dac439d417"
+    },
+    {
+      "path": "README.md",
+      "bytes": 4389,
+      "sha256": "9950ca45b1315146eba0bf979b3d20730d3173f808ed85004ed4ff227b35031c"
+    },
+    {
+      "path": "requirements-dev.txt",
+      "bytes": 14,
+      "sha256": "59c7cd9fdb83aae9ba1355cafce23ca50f5e6b3f521b74a35dfdaabbd63633b6"
+    },
+    {
+      "path": "tests/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "tests/acceptance.json",
+      "bytes": 5154,
+      "sha256": "2d0ef013eaa46b2f574055a8f7b0a4cd8d8453e2189e8afb3cbd0a1117f1e8db"
+    },
+    {
+      "path": "tests/fixtures/gcode.py",
+      "bytes": 23012,
+      "sha256": "e48b5abc25e08b9d340bc738cdee7a68b8c6f3add1b87cdf61a46497d9194c94"
+    },
+    {
+      "path": "tests/native/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "tests/native/baseline/klippy/extras/extruder_config_bak.py",
+      "bytes": 12758,
+      "sha256": "56be84ec9b7f30cfa496e86591fe5e767ce79d716fd93fdf112dabc25001e5da"
+    },
+    {
+      "path": "tests/native/baseline/klippy/extras/probe_inductance_coil.py",
+      "bytes": 99534,
+      "sha256": "4dbdc60a3d1c0add084d595cccbc3e4b86d491c986cfa4234c2701f8a5243011"
+    },
+    {
+      "path": "tests/native/baseline/klippy/kinematics/extruder.py",
+      "bytes": 116595,
+      "sha256": "c890d77eb25f843155c63d940573971c665f353093d2c2a7ef971ec5bacc5f13"
+    },
+    {
+      "path": "tests/native/manifest.json",
+      "bytes": 1032,
+      "sha256": "83d912723b490f57b8cf2b20de994aacb6fc52d15a8c28681a330937a1236e07"
+    },
+    {
+      "path": "tests/native/modified/klippy/extras/extruder_config_bak.py",
+      "bytes": 18087,
+      "sha256": "dab3320f19c0f06d9907507348c1801f092ec117098699e7f3c73c71e1b5c4f4"
+    },
+    {
+      "path": "tests/native/modified/klippy/extras/probe_inductance_coil.py",
+      "bytes": 100186,
+      "sha256": "ffef26f484baaae678e36f6ec6bc73f690bf6877e63f33e0d7e2d5d13249cab6"
+    },
+    {
+      "path": "tests/native/modified/klippy/kinematics/extruder.py",
+      "bytes": 120123,
+      "sha256": "b7e5962b3523cd447ed51c202776873e8e7505547312b674583a9d3884f7f22a"
+    },
+    {
+      "path": "tests/native/test_native.py",
+      "bytes": 28991,
+      "sha256": "9f15f4f39a78a2ab16009c8a0aaa71e0d01867a86b98a84bcd90a034ab9e8f5a"
+    },
+    {
+      "path": "tests/test_macros.py",
+      "bytes": 17823,
+      "sha256": "4a0439c84f66595858b1b1e7ba2bfcb306ec1fcd7c3ef5eb0ae22045f3dbcab1"
+    },
+    {
+      "path": "tools/audit_project.py",
+      "bytes": 4465,
+      "sha256": "7356e4aeb9e4940858b431c277369cf305c58fc6d3b55389fbfacb498202ac3a"
+    },
+    {
+      "path": "tools/prepare_install.py",
+      "bytes": 5793,
+      "sha256": "d6a200fb6313b7f8d94d634249990d5a16ed98659793285e40eb216358f27101"
+    }
+  ]
+}

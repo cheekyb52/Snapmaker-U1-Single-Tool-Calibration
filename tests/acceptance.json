@@ -1,0 +1,143 @@
+{
+  "tested_build": "1.4.1.6_20260608141446",
+  "test_date": "2026-10-12",
+  "test_unit": "One Snapmaker U1",
+  "debug_mode_used": false,
+  "offline_tests": {
+    "native": 32,
+    "macros": 23
+  },
+  "live_cases": {
+    "single_T1": {
+      "checks": {
+        "other_saved_entries_exactly_unchanged": true,
+        "other_applied_offsets_exactly_unchanged": true,
+        "session_baseline_matches_before_status": true,
+        "active_gcode_origin_matches_active_tool": true,
+        "stock_controller_remains_idle": true,
+        "machine_returns_idle": true,
+        "all_heater_targets_off": true,
+        "save_was_allowed": true,
+        "only_selected_saved_entry_changed": true,
+        "saved_correction_matches_measurements": true,
+        "applied_correction_matches_measurements": true,
+        "frozen_reference_matches_previous_frame": true,
+        "reference_metadata_version_valid": true,
+        "t0_anchor_exactly_unchanged": true,
+        "live_and_saved_reference_match": true
+      },
+      "passed": true
+    },
+    "single_T2": {
+      "checks": {
+        "other_saved_entries_exactly_unchanged": true,
+        "other_applied_offsets_exactly_unchanged": true,
+        "session_baseline_matches_before_status": true,
+        "active_gcode_origin_matches_active_tool": true,
+        "stock_controller_remains_idle": true,
+        "machine_returns_idle": true,
+        "all_heater_targets_off": true,
+        "save_was_allowed": true,
+        "only_selected_saved_entry_changed": true,
+        "saved_correction_matches_measurements": true,
+        "applied_correction_matches_measurements": true,
+        "frozen_reference_matches_previous_frame": true,
+        "reference_metadata_version_valid": true,
+        "t0_anchor_exactly_unchanged": true,
+        "live_and_saved_reference_match": true
+      },
+      "passed": true
+    },
+    "single_T3": {
+      "checks": {
+        "other_saved_entries_exactly_unchanged": true,
+        "other_applied_offsets_exactly_unchanged": true,
+        "session_baseline_matches_before_status": true,
+        "active_gcode_origin_matches_active_tool": true,
+        "stock_controller_remains_idle": true,
+        "machine_returns_idle": true,
+        "all_heater_targets_off": true,
+        "save_was_allowed": true,
+        "only_selected_saved_entry_changed": true,
+        "saved_correction_matches_measurements": true,
+        "applied_correction_matches_measurements": true,
+        "frozen_reference_matches_previous_frame": true,
+        "reference_metadata_version_valid": true,
+        "t0_anchor_exactly_unchanged": true,
+        "live_and_saved_reference_match": true
+      },
+      "passed": true
+    },
+    "stock_full": {
+      "checks": {
+        "four_tool_save_responses_observed": true,
+        "saved_bases_match_all_four_stock_results": true,
+        "all_saved_positions_finite": true,
+        "frozen_metadata_was_present_before": true,
+        "frozen_reference_metadata_removed": true,
+        "live_reference_returned_to_legacy_centering": true,
+        "native_single_save_capability_retained": true,
+        "all_applied_offsets_match_stock_center": true,
+        "active_origin_matches_active_tool": true,
+        "unrelated_saved_fields_preserved": true,
+        "stock_controller_and_machine_idle": true,
+        "custom_macro_remained_idle": true,
+        "all_heater_targets_off": true,
+        "no_stock_cycle_command_errors": true
+      },
+      "passed": true
+    },
+    "clean_validate": {
+      "checks": {
+        "four_tool_order_and_measurements_complete": true,
+        "tolerance_values_finite_positive": true,
+        "report_matches_independent_pair_evaluation": true,
+        "saved_json_bytes_exactly_unchanged": true,
+        "all_applied_offsets_exactly_unchanged": true,
+        "session_baseline_matches_pretest_offsets": true,
+        "cached_reference_exactly_unchanged": true,
+        "active_origin_matches_active_tool": true,
+        "stock_controller_and_machine_idle": true,
+        "all_heater_targets_off": true
+      },
+      "passed": true,
+      "offsets_within_tolerance": true,
+      "tolerances_mm": [
+        0.05,
+        0.05,
+        0.05
+      ],
+      "max_absolute_residual_mm": [
+        0.011065446680703417,
+        0.003759701839214813,
+        0.005333333333588763
+      ]
+    },
+    "restart_persistence": {
+      "checks": {
+        "new_klipper_process": true,
+        "saved_json_bytes_unchanged": true,
+        "cached_reference_restored": true,
+        "reference_exactly_unchanged": true,
+        "all_applied_offsets_exactly_unchanged": true,
+        "all_offsets_match_saved_bases_and_reference": true,
+        "active_origin_correct": true,
+        "all_heaters_off": true,
+        "controllers_idle": true
+      },
+      "passed": true
+    }
+  },
+  "settings": {
+    "validation_points": 6,
+    "calibration_points": 10,
+    "xy_repeats": 3,
+    "validation_tolerance_mm": [
+      0.05,
+      0.05,
+      0.05
+    ],
+    "speed_tuning": "Deferred at owner request"
+  },
+  "privacy": "Sanitized results only; device identities, actual saved calibration tables, raw logs, credentials and images excluded"
+}

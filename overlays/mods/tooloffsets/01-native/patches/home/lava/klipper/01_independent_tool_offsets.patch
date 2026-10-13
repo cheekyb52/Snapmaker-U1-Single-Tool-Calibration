@@ -1,0 +1,289 @@
+diff --git a/klippy/kinematics/extruder.py b/klippy/kinematics/extruder.py
+--- a/klippy/kinematics/extruder.py
++++ b/klippy/kinematics/extruder.py
+@@ -621,7 +621,9 @@
+         self.is_calibrating_flow = True
+     def _update_extruder_offset(self):
+         self.update_extruder_gcode_offset()
+-        self.active_gcode_offset()
++        toolhead = self.printer.lookup_object('toolhead')
++        if toolhead.get_extruder() is self:
++            self.active_gcode_offset()
+     def _handle_new_task_start(self):
+         self.fan_speed_exception_cnt = 0
+         self.print_task_fan_error_sum = 0
+@@ -679,6 +681,11 @@
+         if self.gcode_offset is not None:
+             gcode.run_script_from_command("SET_GCODE_OFFSET X=%f Y=%f Z=%f" % (self.gcode_offset[0], self.gcode_offset[1], self.gcode_offset[2]))
+     def get_center_base_position(self):
++        backend = self.printer.lookup_object('extruder_config_bak', None)
++        if backend is not None:
++            reference = backend.get_offset_reference()
++            if reference is not None:
++                return reference
+         center_x = center_y = first_z_value = None
+         extruder_list = self.printer.lookup_object('extruder_list', [])
+         if extruder_list and len(extruder_list) > 1:
+@@ -1754,7 +1761,49 @@
+                 self.is_calibrating_flow = False
+             else:
+                 self.is_calibrating_flow = True
++    def _save_base_position_preserving_reference(self, gcmd, new_position):
++        if self.name not in ('extruder1', 'extruder2', 'extruder3'):
++            raise gcmd.error("Independent calibration requires T1/T2/T3; "
++                             "calibrate all four tools for T0")
++        now = self.printer.get_reactor().monotonic()
++        objects = [self.printer.lookup_object(name, None) for name in
++                   ('print_stats', 'virtual_sdcard', 'pause_resume')]
++        if any(obj is None for obj in objects):
++            raise gcmd.error("Cannot verify idle state for independent calibration")
++        printing, vsd, pause = [obj.get_status(now) for obj in objects]
++        if (printing.get('state') not in ('standby', 'complete', 'cancelled')
++                or vsd.get('is_active') is not False
++                or pause.get('is_paused') is not False):
++            raise gcmd.error("Independent calibration is blocked during a print")
++        controller = self.printer.lookup_object('extruder_offset_calibration', None)
++        if controller is not None and controller.calibration_step != 'idle':
++            raise gcmd.error("Stock calibration is already active")
++        backend = self.printer.lookup_object('extruder_config_bak', None)
++        if backend is None or not os.path.exists(backend.base_position_config_path):
++            raise gcmd.error("Independent calibration requires the stock JSON backend")
++        try:
++            expected = {}
++            for name in ('extruder', 'extruder1', 'extruder2', 'extruder3'):
++                obj = self.printer.lookup_object(name, None)
++                if obj is None:
++                    raise ValueError("All four physical tools are required")
++                expected[name] = backend.validate_base_position(obj.base_position)
++            new_position = backend.validate_base_position(new_position)
++            reference = backend.validate_base_position(self.get_center_base_position())
++            if any(abs(new_position[a] - expected[self.name][a]) > 2.0
++                   for a in range(3)):
++                raise ValueError("Independent correction exceeds 2 mm")
++        except (ValueError, TypeError) as e:
++            raise gcmd.error(str(e))
++        if not backend.update_base_positions({self.name: new_position},
++                                             reference=reference,
++                                             expected_positions=expected):
++            raise gcmd.error("Independent calibration was not saved")
++        # Other tools' saved bases and the shared reference are unchanged.
++        self.base_position = new_position
++
+     def cmd_SET_EXTRUDER_BASE_POSITION(self, gcmd):
++        preserve_reference = gcmd.get_int('PRESERVE_REFERENCE', 0, minval=0, maxval=1)
+         # Check if this is the first time setting base_position
+         is_first_time = self.base_position is None
+ 
+@@ -1794,19 +1843,26 @@
+         if is_first_time and not all(specified_axes):
+             raise gcmd.error("When setting base_position for the first time, all three axes (X, Y, Z) must be specified.")
+ 
+-        # Update the base position in memory
+-        self.base_position = new_base_position
+-
+-        # Save to config
+-        configfile = self.printer.lookup_object('configfile')
+-        extruder_bak = self.printer.lookup_object('extruder_config_bak', None)
+-        if extruder_bak is None or not os.path.exists(extruder_bak.base_position_config_path):
+-            configfile.set(self.name, 'base_position',
+-                        "\n%.6f, %.6f, %.6f\n" % (self.base_position[0], self.base_position[1], self.base_position[2]))
+-            self.printer.lookup_object('gcode').run_script_from_command("SAVE_CONFIG RESTART=0")
++        backend = self.printer.lookup_object('extruder_config_bak', None)
++        if (backend is not None and backend.get_offset_reference() is not None
++                and not os.path.exists(backend.base_position_config_path)):
++            raise gcmd.error("Saved offset reference file is unavailable")
++        if preserve_reference:
++            self._save_base_position_preserving_reference(gcmd, new_base_position)
+         else:
+-            if not self.update_extruder_config("base_position", new_base_position):
+-                gcmd.respond_info("Warning: Failed to save base position to config file")
++            # Update the base position in memory
++            self.base_position = new_base_position
++
++            # Save to config
++            configfile = self.printer.lookup_object('configfile')
++            extruder_bak = self.printer.lookup_object('extruder_config_bak', None)
++            if extruder_bak is None or not os.path.exists(extruder_bak.base_position_config_path):
++                configfile.set(self.name, 'base_position',
++                            "\n%.6f, %.6f, %.6f\n" % (self.base_position[0], self.base_position[1], self.base_position[2]))
++                self.printer.lookup_object('gcode').run_script_from_command("SAVE_CONFIG RESTART=0")
++            else:
++                if not self.update_extruder_config("base_position", new_base_position):
++                    gcmd.respond_info("Warning: Failed to save base position to config file")
+ 
+         gcmd.respond_info("Base position for %s set to X:%.3f Y:%.3f Z:%.3f" %
+                          (self.name, new_base_position[0], new_base_position[1], new_base_position[2]))
+diff --git a/klippy/extras/extruder_config_bak.py b/klippy/extras/extruder_config_bak.py
+--- a/klippy/extras/extruder_config_bak.py
++++ b/klippy/extras/extruder_config_bak.py
+@@ -1,16 +1,19 @@
+ import json
++import math
+ import os
+ import tempfile
+ import logging, queuefile
+ 
+ EXTRUDER_CONFIG_FILE = "extruder_config.json"
+ EXTRUDER_BASE_POSITION_FILE = "extruder_base_position.json"
++OFFSET_REFERENCE_KEY = "_offset_reference"
+ 
+ class ExtruderConfigBak:
+     def __init__(self, config):
+         self.config = config
+         self.printer = config.get_printer()
+         self.reactor = self.printer.get_reactor()
++        self._offset_reference = None
+         self.config_path = os.path.join(self.printer.get_snapmaker_config_dir("persistent"),
+                                       EXTRUDER_CONFIG_FILE)
+         self.old_config_path = os.path.join(self.printer.get_snapmaker_config_dir(),
+@@ -114,8 +117,110 @@
+             logging.error(f"Failed to save extruder config to {config_path}: {str(e)}")
+             raise
+ 
++    @staticmethod
++    def validate_base_position(value):
++        if (not isinstance(value, (list, tuple)) or len(value) != 3
++                or any(type(v) not in (int, float) or not math.isfinite(v)
++                       for v in value)):
++            raise ValueError("Expected three finite base-position coordinates")
++        return list(value)
++
++    def _reference_from_data(self, data):
++        # Legacy files have no reference metadata and retain dynamic centering.
++        if not isinstance(data, dict):
++            raise ValueError("Invalid base-position config structure")
++        if OFFSET_REFERENCE_KEY not in data:
++            return None
++        metadata = data[OFFSET_REFERENCE_KEY]
++        if (not isinstance(metadata, dict)
++                or type(metadata.get('version')) is not int
++                or metadata['version'] != 1):
++            raise ValueError("Unsupported offset reference metadata")
++        reference = self.validate_base_position(metadata['position'])
++        anchor = self.validate_base_position(metadata['t0_base_position'])
++        current_t0 = self.validate_base_position(data['extruder']['base_position'])
++        if anchor != current_t0 or reference[2] != anchor[2]:
++            raise ValueError("Offset reference does not match saved T0")
++        return reference
++
++    def load_offset_reference(self, config):
++        self._offset_reference = None
++        if not os.path.exists(self.base_position_config_path):
++            return
++        try:
++            with open(self.base_position_config_path, 'r') as f:
++                data = json.load(f)
++            self._offset_reference = self._reference_from_data(data)
++        except (OSError, ValueError, TypeError, KeyError) as e:
++            # Do not silently recenter a machine with unreadable reference data.
++            raise config.error("Unable to load offset reference: %s" % (e,))
++
++    def get_offset_reference(self):
++        if self._offset_reference is None:
++            return None
++        return list(self._offset_reference)
++
++    def get_status(self, eventtime):
++        # CFG callers must check this capability before using the new option;
++        # older SET_EXTRUDER_BASE_POSITION handlers ignore unknown parameters.
++        return {'preserve_reference_supported': True,
++                'offset_reference': self.get_offset_reference()}
++
++    def update_base_positions(self, updates, reference=None,
++                              expected_positions=None):
++        """Commit positions and reference in one stock atomic JSON write.
++
++        reference=None retains legacy save semantics: discard a frozen frame
++        and derive the midpoint from the new table. Independent saves pass the
++        existing frame and an expected table to reject stale in-memory data.
++        """
++        try:
++            with open(self.base_position_config_path, 'r') as f:
++                data = json.load(f)
++            if not isinstance(data, dict):
++                raise ValueError("Invalid base-position config structure")
++            if expected_positions is not None:
++                if self._reference_from_data(data) != self._offset_reference:
++                    raise ValueError("Saved offset reference changed")
++                for name, expected in expected_positions.items():
++                    expected = self.validate_base_position(expected)
++                    if data[name]['base_position'] != expected:
++                        raise ValueError("Saved calibration changed for %s" % name)
++            for name, value in updates.items():
++                value = self.validate_base_position(value)
++                entry = data.setdefault(name, {})
++                if not isinstance(entry, dict):
++                    raise ValueError("Invalid extruder config for %s" % name)
++                entry['base_position'] = value
++            if reference is None:
++                data.pop(OFFSET_REFERENCE_KEY, None)
++            else:
++                reference = self.validate_base_position(reference)
++                for name in ('extruder', 'extruder1', 'extruder2', 'extruder3'):
++                    self.validate_base_position(data[name]['base_position'])
++                anchor = list(data['extruder']['base_position'])
++                if reference[2] != anchor[2]:
++                    raise ValueError("Independent reference must retain T0 Z")
++                data[OFFSET_REFERENCE_KEY] = {
++                    'version': 1, 'position': reference,
++                    't0_base_position': anchor,
++                }
++            json.dumps(data, allow_nan=False)
++            self._save_config_atomically(self.base_position_config_path, data)
++        except (OSError, ValueError, TypeError, KeyError) as e:
++            logging.error("Unable to save base positions: %s", e)
++            return False
++        except Exception as e:
++            logging.exception("Atomic base-position save failed: %s", e)
++            return False
++        # Publish the frame only after persistence succeeds.
++        self._offset_reference = None if reference is None else list(reference)
++        return True
++
+     def update_extruder_config(self, extruder_name, field_name=None, value=None):
+         """Update extruder configuration in JSON file with atomic write"""
++        if field_name == 'base_position':
++            return self.update_base_positions({extruder_name: value})
+         config_file = self.config_path
+         if field_name == 'base_position':
+             config_file = self.base_position_config_path
+@@ -289,4 +394,5 @@
+ def load_config(config):
+     extruder_bak = ExtruderConfigBak(config)
+     extruder_bak.extruder_config_bak(config)
++    extruder_bak.load_offset_reference(config)
+     return extruder_bak
+diff --git a/klippy/extras/probe_inductance_coil.py b/klippy/extras/probe_inductance_coil.py
+--- a/klippy/extras/probe_inductance_coil.py
++++ b/klippy/extras/probe_inductance_coil.py
+@@ -1891,16 +1891,27 @@
+             configfile = self.printer.lookup_object('configfile')
+             extruder_list = self.printer.lookup_object('extruder_list', [])
+             extruder_bak = self.printer.lookup_object('extruder_config_bak', None)
++            json_backend = (extruder_bak is not None
++                            and os.path.exists(extruder_bak.base_position_config_path))
++            if (not json_backend and extruder_bak is not None
++                    and extruder_bak.get_offset_reference() is not None):
++                raise gcmd.error("Saved offset reference file is unavailable")
++            if json_backend:
++                updates = {ex.name: self.last_xyz_result[ex.name]
++                           for ex in extruder_list
++                           if self.last_xyz_result.get(ex.name) is not None}
++                # A stock save retains legacy centering and retires the
++                # frozen reference in the same atomic calibration write.
++                if updates and not extruder_bak.update_base_positions(updates):
++                    raise gcmd.error("Stock calibration was not saved")
+             for i in range(len(extruder_list)):
+                 if extruder_list[i].name in self.last_xyz_result and self.last_xyz_result[extruder_list[i].name] is not None:
+                     extruder_list[i].base_position = self.last_xyz_result[extruder_list[i].name]
+                     gcmd.respond_info("{} base_position: {}".format(extruder_list[i].name, extruder_list[i].base_position))
+-                    if extruder_bak is None or not os.path.exists(extruder_bak.base_position_config_path):
++                    if not json_backend:
+                         need_save_cfg = True
+                         configfile.set(extruder_list[i].name, 'base_position',
+                         "\n%.6f, %.6f, %.6f\n" % (extruder_list[i].base_position[0], extruder_list[i].base_position[1], extruder_list[i].base_position[2]))
+-                    else:
+-                        extruder_bak.update_extruder_config(extruder_list[i].name, "base_position", extruder_list[i].base_position)
+ 
+             if need_save_cfg:
+                 self.printer.lookup_object('gcode').run_script_from_command("SAVE_CONFIG RESTART=0")

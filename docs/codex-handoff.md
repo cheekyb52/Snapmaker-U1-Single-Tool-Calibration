@@ -8,7 +8,7 @@ title: Codex Handoff
 
 Implement this calibration feature on the owner's Snapmaker U1, preserving all other printer projects. Read [AGENTS.md](../AGENTS.md), [Installation](installation.md), [Implementation](implementation.md), and [Modified Files](changes.md) first.
 
-The test build is `1.4.1.6_20260608141446`; it is evidence, not the new target's identity. Obtain the actual target/build and authorized connection details privately. Never enable debug or factory mode. Never submit anything to Paxx; the owner's explicit GitHub destination is separate.
+The fully live-tested build is `1.4.1.6_20260608141446`; it is evidence, not the new target's identity. A separate Paxx 2.0 PR760 candidate has completed the planned live acceptance, including saves/restarts, stock full calibration and transition back to an independent save, both validation paths, manual-wait abort and both web UI warnings; read [Firmware compatibility](firmware-compatibility.md) and its exact-source manifest. Obtain the actual target/build and authorized connection details privately. Never enable debug or factory mode. Upstream usermod contributions require the owner's explicit authorization and belong under the optional username mod; keep personal CI changes in the owner's fork on a separate branch.
 
 The requested behavior is:
 
@@ -28,7 +28,7 @@ Do not commit connection details, credentials, backup manifests with personal pa
 
 ## Match or adapt the source
 
-Compare native baseline hashes with [the manifest](../tests/native/manifest.json). Exact matches can use the offline staging utility. For mismatches, identify equivalent methods and adapt only the calibration-related code in these files:
+Compare all three native baseline hashes with [the original manifest](../tests/native/manifest.json) or [the PR760 candidate manifest](../profiles/paxx-2.0-pr760/manifest.json). Exact matches can use the offline staging utility, which selects one complete matching profile. Keep the two patches separate. For mismatches, identify equivalent methods and adapt only the calibration-related code in these files:
 
 | File | Required behavior |
 | --- | --- |
@@ -56,10 +56,10 @@ For an owner-requested stock full cycle, verify all measured results saved, pinn
 
 For clean/validate, verify six pair reports and configurable limits. Saved JSON must be byte-identical, all applied offsets and reference unchanged, active origin correct, and controllers/heaters idle/off at exit.
 
-Test the T0 warning without a save or anomaly. Its common web prompt protocol was exercised, but separate visual acceptance on both Fluidd and Mainsail remains open. The cleaning-wait abort was live tested; immediate interruption of active probing is not established. Never treat an abort as rollback of a completed save.
+Test the T0 warning without a save or anomaly. Its common web prompt protocol and separate operator-confirmed visual acceptance in Fluidd and Mainsail passed on PR760. The cleaning-wait abort was live tested; immediate interruption of active probing is not established. Never treat an abort as rollback of a completed save.
 
 The existing live acceptance record is [tests/acceptance.json](../tests/acceptance.json). It contains sanitized checks, not the new printer's offsets. Probe/save failure guards have offline coverage; cross-build compatibility and print alignment still need target-specific evidence.
 
 ## Suggested owner prompt
 
-> Read AGENTS.md and docs/codex-handoff.md in this repository. Implement this calibration project on my U1 using normal firmware operation. Obtain the target build and authorized connection details privately, verify complete local backups before persistent changes, and match or adapt the native sources. Review and test the staged patch before deployment. I will drive calibration buttons, cleaning, and plate confirmation. Preserve every other project and the other three tools during independent saves. Do not enable debug/factory mode or submit anything to Paxx.
+> Read AGENTS.md and docs/codex-handoff.md in this repository. Implement this calibration project on my U1 using normal firmware operation. Obtain the target build and authorized connection details privately, verify complete local backups before persistent changes, and match or adapt the native sources. Review and test the staged patch before deployment. I will drive calibration buttons, cleaning, and plate confirmation. Preserve every other project and the other three tools during independent saves. Do not enable debug/factory mode. Do not publish or submit upstream contributions without my explicit authorization.

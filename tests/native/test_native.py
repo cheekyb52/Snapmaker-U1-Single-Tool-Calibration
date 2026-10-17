@@ -20,7 +20,13 @@ from unittest.mock import patch
 
 REVIEW = Path(__file__).resolve().parent
 ROOT = REVIEW.parents[1]
-MODIFIED = REVIEW / 'modified'
+PROFILE = os.environ.get('U1_CALIBRATION_PROFILE', 'stock-1.4.1.6')
+if PROFILE not in ('stock-1.4.1.6', 'paxx-2.0-pr760'):
+    raise ValueError('Unknown calibration test profile')
+SOURCE_REVIEW = REVIEW if PROFILE == 'stock-1.4.1.6' else REVIEW / 'pr760'
+MANIFEST_PATH = (REVIEW / 'manifest.json' if PROFILE == 'stock-1.4.1.6'
+                 else ROOT / 'profiles/paxx-2.0-pr760/manifest.json')
+MODIFIED = SOURCE_REVIEW / 'modified'
 NAMES = ['extruder', 'extruder1', 'extruder2', 'extruder3']
 POSITIONS = [
     [10.0, 20.0, -2.0],
@@ -56,7 +62,7 @@ Backend = scope['ExtruderConfigBak']
 REFERENCE_KEY = scope['OFFSET_REFERENCE_KEY']
 original_scope = {'__name__': 'review_original_backend'}
 with patch.dict('sys.modules', {'queuefile': queue}):
-    source = (REVIEW / 'baseline/klippy/extras/extruder_config_bak.py').read_text()
+    source = (SOURCE_REVIEW / 'baseline/klippy/extras/extruder_config_bak.py').read_text()
     exec(compile(source, 'original_backend.py', 'exec'), original_scope)
 OriginalBackend = original_scope['ExtruderConfigBak']
 
@@ -83,9 +89,9 @@ Controller = native_methods('klippy/extras/probe_inductance_coil.py', 'ExtruderO
 OriginalExtruder = native_methods('klippy/kinematics/extruder.py', 'PrinterExtruder', [
     'get_center_base_position', 'update_extruder_gcode_offset', '_update_extruder_offset',
     'active_gcode_offset', 'get_extruder_config', 'update_extruder_config',
-    'cmd_SET_EXTRUDER_BASE_POSITION'], folder=REVIEW / 'baseline')
+    'cmd_SET_EXTRUDER_BASE_POSITION'], folder=SOURCE_REVIEW / 'baseline')
 OriginalController = native_methods('klippy/extras/probe_inductance_coil.py', 'ExtruderOffsetCalibration',
-                                   ['cmd_EXTRUDER_OFFSET_ACTION_SAVE_RESULT'], folder=REVIEW / 'baseline')
+                                   ['cmd_EXTRUDER_OFFSET_ACTION_SAVE_RESULT'], folder=SOURCE_REVIEW / 'baseline')
 
 
 class Command:
@@ -537,39 +543,42 @@ class PatchChecks(unittest.TestCase):
             'klippy/extras/probe_inductance_coil.py': ({
                 'ExtruderOffsetCalibration.cmd_EXTRUDER_OFFSET_ACTION_SAVE_RESULT'}, set()),
         }
-        manifest = json.loads((REVIEW / 'manifest.json').read_text())
+        manifest = json.loads(MANIFEST_PATH.read_text())
         self.assertEqual({item['path'] for item in manifest['files']}, set(expected))
         for relative, (changed, added) in expected.items():
-            original = functions(ast.parse((REVIEW / 'baseline' / relative).read_text()))
+            original = functions(ast.parse((SOURCE_REVIEW / 'baseline' / relative).read_text()))
             modified = functions(ast.parse((MODIFIED / relative).read_text()))
             self.assertEqual(set(original) - set(modified), set())
             self.assertEqual(set(modified) - set(original), added)
             self.assertEqual({name for name in original if original[name] != modified[name]}, changed)
 
     def test_manifest_hashes_and_all_python_syntax(self):
-        manifest = json.loads((REVIEW / 'manifest.json').read_text())
+        manifest = json.loads(MANIFEST_PATH.read_text())
         banner = ('# Project version: %s | Updated: %s'
                   % (manifest['project_version'], manifest['updated']))
-        for relative in [manifest['diff'], manifest['macro']['path']]:
-            self.assertIn(banner, (ROOT / relative).read_text().splitlines()[:5])
+        self.assertIn(banner, (ROOT / manifest['diff']).read_text().splitlines()[:5])
+        macro_banner = ('# Project version: %s | Updated: %s' % (
+            manifest['macro'].get('project_version', manifest['project_version']),
+            manifest['macro'].get('updated', manifest['updated'])))
+        self.assertIn(macro_banner, (ROOT / manifest['macro']['path']).read_text().splitlines()[:5])
         macro = (ROOT / manifest['macro']['path']).read_bytes()
         self.assertEqual(hashlib.sha256(macro).hexdigest(), manifest['macro']['sha256'])
         for item in manifest['files']:
             for folder, key in [('baseline', 'baseline_sha256'), ('modified', 'modified_sha256')]:
-                data = (REVIEW / folder / item['path']).read_bytes()
+                data = (SOURCE_REVIEW / folder / item['path']).read_bytes()
                 self.assertEqual(hashlib.sha256(data).hexdigest(), item[key])
                 compile(data, item['path'], 'exec')
                 if folder == 'modified':
                     self.assertIn(banner, data.decode('utf-8').splitlines()[:5])
 
     def test_unified_diff_applies_exactly_to_baseline(self):
-        manifest = json.loads((REVIEW / 'manifest.json').read_text())
+        manifest = json.loads(MANIFEST_PATH.read_text())
         content = (ROOT / manifest['diff']).read_text()
         count = 0
         for block in content.split('diff --git ')[1:]:
             lines = block.splitlines(True)
             relative = lines[0].split()[0].removeprefix('a/')
-            original = (REVIEW / 'baseline' / relative).read_text().splitlines(True)
+            original = (SOURCE_REVIEW / 'baseline' / relative).read_text().splitlines(True)
             output, cursor, index = [], 0, 3
             while index < len(lines):
                 match = re.match(r'@@ -(\d+)(?:,(\d+))? \+(\d+)(?:,(\d+))? @@', lines[index])

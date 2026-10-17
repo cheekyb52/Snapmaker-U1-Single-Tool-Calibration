@@ -2,6 +2,23 @@
 
 ## Unreleased
 
+### 0.2.0-dev1 — 2026-10-16 (acceptance updated 2026-10-17)
+
+- Port the calibration changes to the exact captured Paxx 2.0 PR760 source set in the same three native files, preserving newer nozzle properties, filament helpers and tool-change behavior. Keep the original 1.4 payload and shared CFG unchanged.
+- Add a separate PR760 patch, source fixtures, hash manifest and sanitized acceptance record. Select staging profiles using all three hashes and reject unmatched or mixed sources.
+- Pass 94 offline checks across both native profiles, shared macros and profile/staging tools.
+- Verify installed native files and normal startup with 16 checks after complete verified backups. Deployment preserves saved data, the reference, CFG and all applied offsets.
+- Complete independent T1/T2/T3 saves with 16 checks each and normal restart persistence with nine checks per run. Only the selected tool changes; other tools and complete reference metadata are preserved. The earlier initial T2 run passed 15 checks.
+- Verify stock full calibration with ten pre-Finish and eleven post-exit checks, operator-confirmed completion and nine restart checks. All four measurements save and pinned metadata retires. The subsequent independent T2 save passes 16 checks and nine restart checks, pinning the new stock frame.
+- Verify T0 warnings in both Mainsail and Fluidd with 13 checks each, operator-confirmed OK dismissal and no touchscreen anomaly. Manual-cleaning-wait abort passes 12 checks with unchanged calibration.
+- Pass default validation with 16 checks and all six pairs within 0.05 mm XYZ. A separate 0.000001 mm run passes 17 checks and correctly flags all six pairs without a G-code error. Both runs preserve saved bytes, applied offsets and reference, with idle controllers and zero heater targets.
+- Build a separate seven-file optional `extended-cheeky_b52` usermod candidate against pinned upstream commit `4bd40f7eb4e396d275c7ede0b7f15d0788588696`. Verify all five payload files from the unpacked image and pass 17 build-guard fixture checks. No image flash, boot acceptance or upstream submission.
+- Retain explicit limits: one tested printer/source set, no printed alignment-artifact acceptance, no live active-probing abort acceptance, and deferred speed tuning.
+- Record owner-reported successful-looking prints using the macros on 2026-10-17. A measured alignment artifact remains untested.
+
+- Operator-flash the built image and pass 20 read-only boot checks, including exact native/ROM-template hashes and unchanged saved calibration, reference and all four applied offsets. Record the custom Klipper source label `HEAD`.
+- Pass 16 post-flash independent T2 save checks and nine normal restart checks after automatic tool activation settled. Preserve the initial early origin-check failure and verify recovery through native startup without a firmware change or second restart. Complete the final post-flash default validation with 16 checks, all six pairs within 0.05 mm and unchanged saved calibration, offsets and reference. Planned printer testing is complete.
+
 ## 0.1.0 — 2026-10-12
 
 ### File identification

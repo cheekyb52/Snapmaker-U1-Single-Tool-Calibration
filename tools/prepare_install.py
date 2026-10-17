@@ -1,4 +1,4 @@
-"""Stage the exact tested calibration patch from local source; never install it."""
+"""Stage a source-matched calibration profile locally; never install it."""
 import argparse
 import hashlib
 import json
@@ -9,7 +9,10 @@ import sys
 ROOT = Path(__file__).resolve().parents[1]
 MACRO = ROOT / ('overlays/mods/tooloffsets/02-macros/root/usr/local/share/'
                 'firmware-config/extended/klipper/70_tool_offsets.cfg')
-MACRO_SHA256 = '5d73c5f489bccd124a6343f8b32968d52f29f8ab353cc45607f0ba556ac42ccd'
+PROFILES = {
+    'stock-1.4.1.6': 'tests/native/manifest.json',
+    'paxx-2.0-pr760': 'profiles/paxx-2.0-pr760/manifest.json',
+}
 EXPECTED = {'klippy/kinematics/extruder.py',
             'klippy/extras/extruder_config_bak.py',
             'klippy/extras/probe_inductance_coil.py'}
@@ -54,17 +57,44 @@ def apply_exact(original, lines):
     return ''.join(result).encode('utf-8')
 
 
-def prepare(source_root, output):
+def select_manifest(source_root, profile='auto'):
+    if profile != 'auto' and profile not in PROFILES:
+        raise ValueError('Unknown source profile')
+    actual = {}
+    for relative in EXPECTED:
+        source_path = (source_root / relative).resolve()
+        if not source_path.is_relative_to(source_root):
+            raise ValueError('Source path leaves working copy')
+        actual[relative] = sha256(source_path.read_bytes())
+    matches = []
+    for name, manifest_path in PROFILES.items():
+        if profile != 'auto' and name != profile:
+            continue
+        manifest = json.loads((ROOT / manifest_path).read_text(encoding='utf-8'))
+        entries = {item['path']: item for item in manifest['files']}
+        if set(entries) != EXPECTED or len(manifest['files']) != len(EXPECTED):
+            raise ValueError('Unexpected native manifest scope')
+        if all(actual[path] == entries[path]['baseline_sha256'] for path in EXPECTED):
+            matches.append((name, manifest))
+    if len(matches) != 1:
+        raise ValueError('Baseline hash mismatch: no unique matching source profile')
+    return matches[0]
+
+
+def prepare(source_root, output, profile='auto'):
     source_root, output = source_root.resolve(), output.resolve()
     if output.exists():
         raise ValueError('Output already exists; choose a new staging directory')
     if output == source_root or output.is_relative_to(source_root):
         raise ValueError('Output must be outside the source working copy')
-    manifest = json.loads((ROOT / 'tests/native/manifest.json').read_text(encoding='utf-8'))
+    _, manifest = select_manifest(source_root, profile)
     entries = {item['path']: item for item in manifest['files']}
     if set(entries) != EXPECTED:
         raise ValueError('Unexpected native manifest scope')
-    patch_text = (ROOT / manifest['diff']).read_text(encoding='utf-8')
+    patch_path = (ROOT / manifest['diff']).resolve()
+    if not patch_path.is_relative_to(ROOT):
+        raise ValueError('Patch path leaves project')
+    patch_text = patch_path.read_text(encoding='utf-8')
     blocks = patch_text.split('diff --git ')
     if (len(blocks) != 4
             or any(line.strip() and not line.startswith('#')
@@ -95,7 +125,8 @@ def prepare(source_root, output):
     if set(staged) != EXPECTED:
         raise ValueError('Incomplete patch')
     macro = MACRO.read_bytes()
-    if sha256(macro) != MACRO_SHA256:
+    if (manifest['macro']['path'] != MACRO.relative_to(ROOT).as_posix()
+            or sha256(macro) != manifest['macro']['sha256']):
         raise ValueError('Macro hash differs from the validated payload')
     staged['config/extended/klipper/70_tool_offsets.cfg'] = macro
     # All validation happens before the first write. Existing sources stay untouched.
@@ -111,9 +142,11 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--source-root', type=Path, required=True)
     parser.add_argument('--output', type=Path, required=True)
+    parser.add_argument('--profile', choices=['auto', *PROFILES], default='auto',
+                        help='Default: select one profile by all three exact baseline hashes')
     args = parser.parse_args()
     try:
-        result = prepare(args.source_root, args.output)
+        result = prepare(args.source_root, args.output, args.profile)
     except (OSError, ValueError, SyntaxError) as error:
         # OS exception messages can include private paths; don't include them.
         print(str(error) if isinstance(error, ValueError) else type(error).__name__, file=sys.stderr)

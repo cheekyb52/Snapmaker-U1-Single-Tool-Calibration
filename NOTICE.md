@@ -2,6 +2,10 @@
 
 This project is distributed under GPL-3.0. See [LICENSE](LICENSE).
 
+## PR760 port — 2026-10-16
+
+Candidate version `0.2.0-dev1` reapplies this project's calibration modifications to a separately captured Paxx 2.0 source set identified by its [manifest](profiles/paxx-2.0-pr760/manifest.json). The original and modified PR760 firmware sources are included for review and reproducible tests, with their upstream notices preserved. Unrelated newer firmware code is retained. The shared macro and original 1.4 native payload are unchanged. The candidate has completed the planned offline and live acceptance, plus a separate usermod image build, operator-driven flash/boot checks and post-flash T2 save/restart/default validation, with no upstream submission; see [Firmware compatibility](docs/firmware-compatibility.md).
+
 ## Notice of modifications — 2026-10-12
 
 The [Snapmaker U1 Single Tool Calibration project](https://github.com/cheekyb52/Snapmaker-U1-Single-Tool-Calibration) modified the following native firmware files for this calibration feature:

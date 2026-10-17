@@ -1,0 +1,581 @@
+{
+  "project_version": "0.2.0-dev1",
+  "updated": "2026-10-17",
+  "profile": "paxx-2.0-pr760",
+  "firmware_observed": "2.0.0-paxx12-test-pr-760",
+  "scope": "Completed planned PR760 live acceptance: independent T1/T2/T3 saves and normal restarts, stock full calibration/reference retirement/restart, subsequent independent save/new pin/restart, Mainsail and Fluidd T0 warnings, manual-wait abort, default validation and tight-limit flag path. Separate usermod image build and operator-driven flash/20 boot checks passed. Post-flash T2 save/restart/default validation passed. Measured printed alignment remains open.",
+  "offline": {
+    "legacy_native_regressions": 32,
+    "pr760_native_regressions": 32,
+    "shared_macro_regressions": 23,
+    "profile_staging_regressions": 7,
+    "total_passed": 94,
+    "changed_calibration_methods_match_previous_implementation": true,
+    "unrelated_pr760_code_preserved": true,
+    "exact_patch_application_and_staged_hashes_verified": true,
+    "unknown_mixed_and_wrong_profile_sources_rejected": true,
+    "existing_output_not_overwritten": true,
+    "existing_saved_reference_validates": true,
+    "existing_reference_reproduces_all_four_captured_runtime_offsets": true
+  },
+  "deployment": {
+    "native_files_installed": 3,
+    "startup_checks_passed": 16,
+    "installed_hashes_ownership_modes_verified": true,
+    "normal_process_arguments_and_rt_cgroup_preserved": true,
+    "klipper_ready_with_native_capability": true,
+    "saved_calibration_bytes_unchanged": true,
+    "macro_bytes_unchanged": true,
+    "pinned_reference_and_four_applied_offsets_unchanged": true,
+    "active_origin_correct": true,
+    "controllers_idle_and_heaters_off": true,
+    "verified_backup_acknowledged_for_manual_test": true,
+    "debug_mode_used": false,
+    "motion_or_heat_commanded": false,
+    "calibration_save_commanded": false
+  },
+  "printer_writes": true,
+  "live_acceptance": {
+    "installed_and_started": "passed: 16 startup/invariant checks",
+    "t0_prompt_mainsail": "passed: 13 checks plus operator-confirmed display, OK dismissal and no touchscreen anomaly",
+    "t0_prompt_fluidd": "passed: 13 checks plus visual review, operator-confirmed OK dismissal and no touchscreen anomaly",
+    "manual_wait_abort": "passed: 12 no-save/runtime/reference/cleanup checks",
+    "t1_independent_save": "passed: 16 saved-data/runtime/reference/cleanup checks plus 9 restart-persistence checks",
+    "t2_independent_save": "passed: initial 15 checks and post-stock 16 checks, with 9 restart checks after each",
+    "t3_independent_save": "passed: 16 saved-data/runtime/reference/cleanup checks plus 9 restart-persistence checks",
+    "restart_persistence": "passed: 9 checks each after initial T2, T3, T1, stock full and post-stock T2",
+    "stock_full_calibration": "passed: 10 pre-Finish and 11 post-exit checks; operator confirmed completion screen",
+    "full_to_single_transition": "passed: 16 independent-save and 9 restart checks after stock full calibration",
+    "clean_and_validate_without_save": "passed: default 16 workflow checks, six console pair reports and no saved/applied/reference changes",
+    "tight_tolerance_flag_path": "passed: 17 workflow checks, six console pair reports, deliberate failure flag and no saved/applied/reference changes"
+  },
+  "t2_independent_save": {
+    "checks_passed": 15,
+    "operator_drove_cycle": true,
+    "only_selected_saved_base_changed": true,
+    "other_three_saved_entries_exactly_unchanged": true,
+    "only_selected_applied_offset_changed": true,
+    "measured_correction_matches_saved_and_applied_changes": true,
+    "reference_metadata_exactly_preserved": true,
+    "unrelated_saved_fields_unchanged": true,
+    "active_origin_correct": true,
+    "controllers_idle_and_heaters_off": true,
+    "monitor_read_only": true,
+    "restart_after_new_save_verified": true
+  },
+  "restart_persistence": {
+    "checks_passed": 9,
+    "normal_new_klipper_process": true,
+    "same_firmware_build_ready": true,
+    "saved_calibration_bytes_identical": true,
+    "all_four_applied_offsets_identical": true,
+    "shared_reference_identical": true,
+    "native_capability_loaded": true,
+    "active_origin_matches_active_tool": true,
+    "controllers_idle_and_heaters_off": true,
+    "backup_authorization_cleared_as_expected": true,
+    "verified_backup_reacknowledged": true,
+    "verification_used_fresh_stable_status_after_ready": true,
+    "debug_mode_used": false,
+    "motion_heat_or_calibration_save_commanded": false
+  },
+  "acceptance_2026_10_17": {
+    "fresh_config_and_native_backups_verified": true,
+    "installed_native_hashes_match_tested_port": true,
+    "filament_owner_confirmed": "PLA in all four tools",
+    "t0_mainsail": {
+      "checks_passed": 13,
+      "operator_confirmed_dialog_and_ok_dismissal": true,
+      "operator_confirmed_no_touchscreen_anomaly": true,
+      "saved_bytes_four_offsets_and_reference_unchanged": true,
+      "controllers_idle_and_heater_targets_zero": true
+    },
+    "abort_at_first_manual_cleaning_wait": {
+      "checks_passed": 12,
+      "operator_started_cycle_and_pressed_abort": true,
+      "manual_wait_observed": true,
+      "saved_bytes_four_offsets_and_reference_unchanged": true,
+      "controllers_idle_and_heater_targets_zero": true,
+      "active_probing_abort_tested": false
+    },
+    "next_case": null,
+    "t3_independent_save": {
+      "checks_passed": 16,
+      "operator_drove_cycle": true,
+      "only_selected_saved_base_changed": true,
+      "other_three_saved_entries_exactly_unchanged": true,
+      "only_selected_applied_offset_changed": true,
+      "measured_correction_matches_saved_and_applied_changes": true,
+      "reference_metadata_exactly_preserved": true,
+      "unrelated_saved_fields_unchanged": true,
+      "active_origin_correct": true,
+      "controllers_idle_and_heaters_off": true,
+      "monitor_read_only": true,
+      "restart_after_new_save_verified": true,
+      "native_post_park_retry_observed_and_recovered": true
+    },
+    "post_t3_restart": {
+      "checks_passed": 9,
+      "normal_process_restart": true,
+      "saved_bytes_reference_and_four_offsets_identical": true,
+      "fresh_stable_status_after_ready": true,
+      "backup_acknowledgement_cleared_then_rearmed": true,
+      "controllers_idle_and_heater_targets_zero": true,
+      "debug_mode_used": false
+    },
+    "t1_independent_save": {
+      "checks_passed": 16,
+      "operator_drove_cycle": true,
+      "other_three_saved_entries_exactly_unchanged": true,
+      "other_three_applied_offsets_exactly_unchanged": true,
+      "selected_saved_and_applied_changes_match_measured_correction": true,
+      "reference_metadata_exactly_preserved": true,
+      "unrelated_saved_fields_unchanged": true,
+      "active_origin_correct": true,
+      "controllers_idle_and_heaters_off": true,
+      "monitor_read_only": true,
+      "native_post_park_retry_observed_and_recovered": true,
+      "restart_after_new_save_verified": true
+    },
+    "post_t1_restart": {
+      "checks_passed": 9,
+      "saved_bytes_reference_and_four_offsets_identical": true,
+      "normal_process_and_active_origin_verified": true,
+      "controllers_idle_and_heater_targets_zero": true,
+      "backup_acknowledgement_cleared_then_rearmed": true,
+      "debug_mode_used": false
+    },
+    "stock_full_calibration": {
+      "post_exit_checks_passed": 11,
+      "pre_finish_checks_passed": 10,
+      "operator_drove_stock_routine": true,
+      "all_four_results_saved": true,
+      "pinned_reference_retired_before_finish": true,
+      "stock_midpoint_and_t0_z_centering_restored": true,
+      "unrelated_saved_fields_and_other_tool_properties_preserved": true,
+      "active_origin_correct": true,
+      "controllers_idle_and_heaters_off_after_exit": true,
+      "operator_confirmed_completion_screen": true,
+      "native_post_park_retries_recovered": 2,
+      "monitor_read_only": true,
+      "debug_mode_used": false,
+      "restart_persistence_checks_passed": 9,
+      "reference_remains_retired_after_restart": true,
+      "saved_bytes_and_all_applied_offsets_identical_after_restart": true
+    },
+    "post_stock_independent_t2": {
+      "independent_save_checks_passed": 16,
+      "restart_checks_passed": 9,
+      "precycle_saved_table_matches_completed_stock_run": true,
+      "precycle_reference_metadata_absent": true,
+      "new_reference_pinned_to_stock_frame": true,
+      "reference_t0_anchor_matches_new_stock_t0_base": true,
+      "only_t2_saved_base_and_applied_offset_changed": true,
+      "other_three_saved_entries_and_applied_offsets_exactly_unchanged": true,
+      "selected_changes_match_measured_correction": true,
+      "unrelated_fields_and_other_tool_properties_preserved": true,
+      "saved_bytes_new_reference_and_all_offsets_survive_restart": true,
+      "active_origin_correct_controllers_idle_and_heater_targets_zero": true,
+      "operator_drove_physical_cycle": true,
+      "debug_mode_used": false
+    },
+    "default_clean_and_validate": {
+      "workflow_checks_passed": 16,
+      "pair_reports_verified": 6,
+      "tolerances_xyz_mm": [
+        0.05,
+        0.05,
+        0.05
+      ],
+      "pairs_within_tolerance": 6,
+      "within_tolerance": true,
+      "maximum_absolute_pair_residual_xyz_mm": [
+        0.0023008414900722585,
+        0.0027967696546227216,
+        0.003499999992301106
+      ],
+      "aggregate_report_matches_all_six_pair_results": true,
+      "console_residuals_and_flags_match_measurements": true,
+      "saved_calibration_bytes_identical": true,
+      "all_four_applied_offsets_identical": true,
+      "shared_reference_identical": true,
+      "active_origin_correct_controllers_idle_and_heater_targets_zero": true,
+      "no_gcode_command_error": true,
+      "monitor_read_only": true,
+      "debug_mode_used": false
+    },
+    "tight_tolerance_validation": {
+      "workflow_checks_passed": 17,
+      "pair_reports_verified": 6,
+      "tolerances_xyz_mm": [
+        1e-06,
+        1e-06,
+        1e-06
+      ],
+      "pairs_within_tolerance": 0,
+      "within_tolerance": false,
+      "maximum_absolute_pair_residual_xyz_mm": [
+        0.009887017334518688,
+        0.0036827267651915463,
+        0.004999999997711946
+      ],
+      "aggregate_report_matches_all_six_pair_results": true,
+      "console_residuals_and_flags_match_measurements": true,
+      "saved_calibration_bytes_identical": true,
+      "all_four_applied_offsets_identical": true,
+      "shared_reference_identical": true,
+      "active_origin_correct_controllers_idle_and_heater_targets_zero": true,
+      "no_gcode_command_error": true,
+      "monitor_read_only": true,
+      "debug_mode_used": false,
+      "deliberately_tight_limit_exercised_failure_report": true
+    },
+    "t0_fluidd": {
+      "checks_passed": 13,
+      "operator_confirmed_dialog_and_ok_dismissal": true,
+      "operator_confirmed_no_touchscreen_anomaly": true,
+      "title_body_and_ok_button_visually_reviewed": true,
+      "prompt_end_response_observed": true,
+      "saved_bytes_four_offsets_and_reference_unchanged": true,
+      "controllers_idle_and_heater_targets_zero": true
+    }
+  },
+  "privacy": "Sanitized conclusions only; no device identity, actual calibration values, credentials or raw logs",
+  "t3_independent_save": {
+    "checks_passed": 16,
+    "operator_drove_cycle": true,
+    "only_selected_saved_base_changed": true,
+    "other_three_saved_entries_exactly_unchanged": true,
+    "only_selected_applied_offset_changed": true,
+    "measured_correction_matches_saved_and_applied_changes": true,
+    "reference_metadata_exactly_preserved": true,
+    "unrelated_saved_fields_unchanged": true,
+    "active_origin_correct": true,
+    "controllers_idle_and_heaters_off": true,
+    "monitor_read_only": true,
+    "restart_after_new_save_verified": true,
+    "native_post_park_retry_observed_and_recovered": true
+  },
+  "firmware_builder": {
+    "date": "2026-10-17",
+    "status": "passed: complete image build and five unpacked-payload checks",
+    "upstream_repository": "paxx12-snapmaker-u1/SnapmakerU1-Extended-Firmware",
+    "upstream_commit": "4bd40f7eb4e396d275c7ede0b7f15d0788588696",
+    "profile": "extended-cheeky_b52",
+    "candidate_archive_sha256": "fdadce01812dc9483f68b44f2e4ac20f93c571bc7a9483c0d3024b3486fb8559",
+    "candidate_files": [
+      {
+        "path": "overlays/mods/cheeky_b52/01-native/patches/home/lava/klipper/01_independent_tool_offsets.patch",
+        "bytes": 17342,
+        "sha256": "d0109f0268da22cc11ee77fde35345ebe7ec5a10995e4789665e23177e5b9e25",
+        "mode": "100644"
+      },
+      {
+        "path": "overlays/mods/cheeky_b52/01-native/pre-scripts/01-check-source.sh",
+        "bytes": 985,
+        "sha256": "fad2a55688c0ef0216b385d237f806fc1fbe24e417e2deb6a57e5e328a2b66e9",
+        "mode": "100755"
+      },
+      {
+        "path": "overlays/mods/cheeky_b52/01-native/scripts/01-verify-native.sh",
+        "bytes": 1221,
+        "sha256": "2c5bf1979f1d23f8fd55677cf420d30aed2c1e2d5c724ef4e1e79a52c6b930ed",
+        "mode": "100755"
+      },
+      {
+        "path": "overlays/mods/cheeky_b52/02-macros/root/usr/local/share/firmware-config/extended/klipper/70_tool_offsets.cfg",
+        "bytes": 17743,
+        "sha256": "5d73c5f489bccd124a6343f8b32968d52f29f8ab353cc45607f0ba556ac42ccd",
+        "mode": "100644"
+      },
+      {
+        "path": "overlays/mods/cheeky_b52/02-macros/scripts/01-verify-macro.sh",
+        "bytes": 562,
+        "sha256": "8e46a9eab296f5e3142fa9f8d61057e2749513999b7b48e7e84e4d17c1acde98",
+        "mode": "100755"
+      },
+      {
+        "path": "overlays/mods/cheeky_b52/NOTICE.md",
+        "bytes": 3494,
+        "sha256": "df474f9526137dd066e6a83fb91cc5795404435053c0b97614ff7be7aa33cc1f",
+        "mode": "100644"
+      },
+      {
+        "path": "overlays/mods/cheeky_b52/README.md",
+        "bytes": 3756,
+        "sha256": "038be90509ddeb81fd7cb000a530034737f53be4f7c022d015fdc4c643f1d15a",
+        "mode": "100644"
+      }
+    ],
+    "host_environment": "Linux x86_64 with Docker and ARM binfmt emulation",
+    "isolated_docker_image_tag": true,
+    "original_dev_image_tag_preserved": true,
+    "builder_commands": [
+      "make tools",
+      "make firmware",
+      "make build PROFILE=extended-cheeky_b52 OUTPUT_FILE=firmware/U1_calibration.bin"
+    ],
+    "source_guard_checked_three_baselines_and_atomic_writer": true,
+    "native_patch_applied_without_fuzz": true,
+    "patched_hashes_and_python_syntax_verified": true,
+    "macro_template_hash_verified": true,
+    "unpacked_built_image_and_verified_five_payload_files": true,
+    "payload_files": {
+      "home/lava/klipper/klippy/kinematics/extruder.py": {
+        "sha256": "da375bfb97d065a1511829ae1f0d3d44531b18c4c39246439812a8989ceb5cae",
+        "verified_from_built_image": true
+      },
+      "home/lava/klipper/klippy/extras/extruder_config_bak.py": {
+        "sha256": "21cb0c7037eb0c2ee195704e8e81dfd5fad307ff5cb16a0c3ed981b006d0f302",
+        "verified_from_built_image": true
+      },
+      "home/lava/klipper/klippy/extras/probe_inductance_coil.py": {
+        "sha256": "05196461cea7160eb9ffee5907a2332d12d1740349d8e65b1f3d7671fca545c8",
+        "verified_from_built_image": true
+      },
+      "home/lava/klipper/klippy/queuefile.py": {
+        "sha256": "fce61a3256e376b566b8676c8b95f9c3082846881995af8cb0369af581938157",
+        "verified_from_built_image": true
+      },
+      "usr/local/share/firmware-config/extended/klipper/70_tool_offsets.cfg": {
+        "sha256": "5d73c5f489bccd124a6343f8b32968d52f29f8ab353cc45607f0ba556ac42ccd",
+        "verified_from_built_image": true
+      }
+    },
+    "artifact_bytes": 253541120,
+    "artifact_sha256": "da8d20b250c17c2025eb4bf5c7779e305fb36e3c7cf48cf61d6f58feb581fc44",
+    "flashed": true,
+    "boot_acceptance": true,
+    "debug_mode_used": false,
+    "upstream_writes": false,
+    "guard_fixture_tests": {
+      "checks_passed": 17,
+      "shell_syntax_checked": true,
+      "outside_builder_calls_rejected": true,
+      "valid_inputs_accepted": true,
+      "each_mismatched_baseline_and_atomic_writer_rejected": true,
+      "each_mismatched_modified_python_rejected": true,
+      "mismatched_macro_rejected": true,
+      "guards_do_not_modify_inputs": true,
+      "built_payload_unchanged": true
+    },
+    "boot_checks_passed": 20,
+    "boot_verification": {
+      "date": "2026-10-17",
+      "checks_passed": 20,
+      "operator_flashed_and_confirmed_online": true,
+      "klipper_source_version_reported": "HEAD",
+      "source_identity_verified_by_four_native_hashes_and_rom_macro_hash": true,
+      "preflash_backups_reverified": true,
+      "saved_calibration_bytes_identical": true,
+      "shared_reference_and_all_four_applied_offsets_identical": true,
+      "persistent_macro_bytes_identical": true,
+      "all_project_commands_registered": true,
+      "normal_process_arguments_and_rt_cgroup": true,
+      "active_origin_correct": true,
+      "controllers_and_print_idle_heater_targets_zero": true,
+      "backup_acknowledgement_cleared_as_expected": true,
+      "monitor_read_only": true,
+      "debug_mode_used": false,
+      "post_flash_physical_cycle_acceptance": "passed: 16 independent T2 checks"
+    },
+    "post_flash_acceptance": {
+      "single-t2": {
+        "date": "2026-10-17",
+        "checks_passed": 16,
+        "checks": {
+          "ready_same_build": true,
+          "controllers_and_print_idle": true,
+          "all_heater_targets_off": true,
+          "active_origin_correct": true,
+          "runtime_matches_saved_table": true,
+          "native_capability_loaded": true,
+          "saved_result_reported": true,
+          "baseline_matches_precycle": true,
+          "other_three_saved_entries_exactly_unchanged": true,
+          "selected_base_matches_measured_correction": true,
+          "selected_other_fields_unchanged": true,
+          "other_three_applied_offsets_exactly_unchanged": true,
+          "selected_offset_matches_measured_correction": true,
+          "reference_pinned_to_precycle_frame": true,
+          "reference_metadata_retained_or_validly_created": true,
+          "unrelated_fields_unchanged": true
+        },
+        "debug_mode_used": false,
+        "operator_drove_cycle": true,
+        "only_t2_saved_and_applied_values_changed": true,
+        "shared_reference_and_other_three_tools_exactly_preserved": true,
+        "controllers_idle_and_heater_targets_zero": true
+      },
+      "restart": {
+        "date": "2026-10-17",
+        "checks_passed": 9,
+        "checks": {
+          "new_normal_klipper_process": true,
+          "klipper_ready_same_build": true,
+          "saved_calibration_bytes_identical": true,
+          "all_four_applied_offsets_identical": true,
+          "shared_reference_identical": true,
+          "native_capability_loaded": true,
+          "active_origin_matches_active_tool": true,
+          "controllers_idle_heaters_off": true,
+          "backup_authorization_cleared_on_restart": true
+        },
+        "debug_mode_used": false,
+        "normal_process_restart": true,
+        "saved_bytes_reference_and_all_offsets_identical": true,
+        "verified_backup_reacknowledged": false,
+        "verification_used_settled_tool_activation": true,
+        "initial_failed_verification_retained": true
+      },
+      "validate": {
+        "date": "2026-10-17",
+        "checks_passed": 16,
+        "checks": {
+          "ready_same_build": true,
+          "controllers_and_print_idle": true,
+          "all_heater_targets_off": true,
+          "active_origin_correct": true,
+          "runtime_matches_saved_table": true,
+          "native_capability_loaded": true,
+          "saved_calibration_bytes_identical": true,
+          "all_four_applied_offsets_identical": true,
+          "reference_identical": true,
+          "all_six_pairs_evaluated": true,
+          "configured_tolerances_match_report": true,
+          "baseline_matches_precycle": true,
+          "requested_test_tolerances_used": true,
+          "no_gcode_command_error": true,
+          "all_six_console_pair_reports_seen": true,
+          "console_residuals_and_flags_match": true
+        },
+        "debug_mode_used": false,
+        "operator_drove_cycle": true,
+        "pairs_evaluated": 6,
+        "within_tolerance": true,
+        "maximum_absolute_pair_residual_xyz_mm": [
+          0.009474553646592554,
+          0.003971080954357831,
+          0.0071666666645859856
+        ],
+        "saved_bytes_reference_and_all_offsets_identical": true
+      }
+    },
+    "post_flash_planned_followup_complete": true
+  },
+  "t1_independent_save": {
+    "checks_passed": 16,
+    "operator_drove_cycle": true,
+    "other_three_saved_entries_exactly_unchanged": true,
+    "other_three_applied_offsets_exactly_unchanged": true,
+    "selected_saved_and_applied_changes_match_measured_correction": true,
+    "reference_metadata_exactly_preserved": true,
+    "unrelated_saved_fields_unchanged": true,
+    "active_origin_correct": true,
+    "controllers_idle_and_heaters_off": true,
+    "monitor_read_only": true,
+    "native_post_park_retry_observed_and_recovered": true,
+    "restart_after_new_save_verified": true
+  },
+  "stock_full_calibration": {
+    "post_exit_checks_passed": 11,
+    "pre_finish_checks_passed": 10,
+    "operator_drove_stock_routine": true,
+    "all_four_results_saved": true,
+    "pinned_reference_retired_before_finish": true,
+    "stock_midpoint_and_t0_z_centering_restored": true,
+    "unrelated_saved_fields_and_other_tool_properties_preserved": true,
+    "active_origin_correct": true,
+    "controllers_idle_and_heaters_off_after_exit": true,
+    "operator_confirmed_completion_screen": true,
+    "native_post_park_retries_recovered": 2,
+    "monitor_read_only": true,
+    "debug_mode_used": false,
+    "restart_persistence_checks_passed": 9,
+    "reference_remains_retired_after_restart": true,
+    "saved_bytes_and_all_applied_offsets_identical_after_restart": true
+  },
+  "full_to_single_transition": {
+    "independent_save_checks_passed": 16,
+    "restart_checks_passed": 9,
+    "precycle_saved_table_matches_completed_stock_run": true,
+    "precycle_reference_metadata_absent": true,
+    "new_reference_pinned_to_stock_frame": true,
+    "reference_t0_anchor_matches_new_stock_t0_base": true,
+    "only_t2_saved_base_and_applied_offset_changed": true,
+    "other_three_saved_entries_and_applied_offsets_exactly_unchanged": true,
+    "selected_changes_match_measured_correction": true,
+    "unrelated_fields_and_other_tool_properties_preserved": true,
+    "saved_bytes_new_reference_and_all_offsets_survive_restart": true,
+    "active_origin_correct_controllers_idle_and_heater_targets_zero": true,
+    "operator_drove_physical_cycle": true,
+    "debug_mode_used": false
+  },
+  "default_clean_and_validate": {
+    "workflow_checks_passed": 16,
+    "pair_reports_verified": 6,
+    "tolerances_xyz_mm": [
+      0.05,
+      0.05,
+      0.05
+    ],
+    "pairs_within_tolerance": 6,
+    "within_tolerance": true,
+    "maximum_absolute_pair_residual_xyz_mm": [
+      0.0023008414900722585,
+      0.0027967696546227216,
+      0.003499999992301106
+    ],
+    "aggregate_report_matches_all_six_pair_results": true,
+    "console_residuals_and_flags_match_measurements": true,
+    "saved_calibration_bytes_identical": true,
+    "all_four_applied_offsets_identical": true,
+    "shared_reference_identical": true,
+    "active_origin_correct_controllers_idle_and_heater_targets_zero": true,
+    "no_gcode_command_error": true,
+    "monitor_read_only": true,
+    "debug_mode_used": false
+  },
+  "functional_live_acceptance_complete": true,
+  "tight_tolerance_validation": {
+    "workflow_checks_passed": 17,
+    "pair_reports_verified": 6,
+    "tolerances_xyz_mm": [
+      1e-06,
+      1e-06,
+      1e-06
+    ],
+    "pairs_within_tolerance": 0,
+    "within_tolerance": false,
+    "maximum_absolute_pair_residual_xyz_mm": [
+      0.009887017334518688,
+      0.0036827267651915463,
+      0.004999999997711946
+    ],
+    "aggregate_report_matches_all_six_pair_results": true,
+    "console_residuals_and_flags_match_measurements": true,
+    "saved_calibration_bytes_identical": true,
+    "all_four_applied_offsets_identical": true,
+    "shared_reference_identical": true,
+    "active_origin_correct_controllers_idle_and_heater_targets_zero": true,
+    "no_gcode_command_error": true,
+    "monitor_read_only": true,
+    "debug_mode_used": false,
+    "deliberately_tight_limit_exercised_failure_report": true
+  },
+  "planned_live_acceptance_complete": true,
+  "remaining_limits": [
+    "Single printer and exact captured source set only",
+    "No printed alignment-artifact acceptance",
+    "Abort verified at a manual wait, not during active probing",
+    "Speed tuning deferred"
+  ],
+  "owner_reported_print_experience": {
+    "reported_date": "2026-10-17",
+    "report": "Owner has printed using the macros and reports the results look fine",
+    "evidence_type": "owner-reported visual experience",
+    "print_count_and_artifact_unspecified": true,
+    "firmware_specific_print_test_procedure_unspecified": true,
+    "measured_alignment_artifact_verified": false
+  }
+}

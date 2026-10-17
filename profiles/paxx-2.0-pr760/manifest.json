@@ -1,0 +1,80 @@
+{
+  "profile": "paxx-2.0-pr760",
+  "firmware_observed": "2.0.0-paxx12-test-pr-760",
+  "project_version": "0.2.0-dev1",
+  "updated": "2026-10-16",
+  "acceptance_updated": "2026-10-17",
+  "status": "planned manual-deployment live acceptance, image build and 20 boot checks passed; post-flash T2 save/restart/default validation passed; measured alignment acceptance remains open",
+  "baseline_fixture": "tests/native/pr760/baseline",
+  "modified_fixture": "tests/native/pr760/modified",
+  "files": [
+    {
+      "path": "klippy/kinematics/extruder.py",
+      "baseline_sha256": "2085de67fb9a7d6c799a958c2a2ece639cc8f136f9dec792fa68eb2c359ce8f5",
+      "modified_sha256": "da375bfb97d065a1511829ae1f0d3d44531b18c4c39246439812a8989ceb5cae"
+    },
+    {
+      "path": "klippy/extras/extruder_config_bak.py",
+      "baseline_sha256": "56be84ec9b7f30cfa496e86591fe5e767ce79d716fd93fdf112dabc25001e5da",
+      "modified_sha256": "21cb0c7037eb0c2ee195704e8e81dfd5fad307ff5cb16a0c3ed981b006d0f302"
+    },
+    {
+      "path": "klippy/extras/probe_inductance_coil.py",
+      "baseline_sha256": "5beaa343012a48c29953f4aece0d12967b85169f05a60973d0df897105ea185b",
+      "modified_sha256": "05196461cea7160eb9ffee5907a2332d12d1740349d8e65b1f3d7671fca545c8"
+    }
+  ],
+  "diff": "profiles/paxx-2.0-pr760/01-native/patches/home/lava/klipper/01_independent_tool_offsets.patch",
+  "macro": {
+    "path": "overlays/mods/tooloffsets/02-macros/root/usr/local/share/firmware-config/extended/klipper/70_tool_offsets.cfg",
+    "sha256": "5d73c5f489bccd124a6343f8b32968d52f29f8ab353cc45607f0ba556ac42ccd",
+    "live_tested_sha256": "d62e5e666b534b48efa0b6d658931908e793eeb6696c9ae6eb559cf96883a79a",
+    "project_version": "0.1.0",
+    "updated": "2026-10-12"
+  },
+  "fixture_provenance": "Generic installed firmware source; excludes configuration, device data and credentials",
+  "inspected_writer": {
+    "path": "klippy/queuefile.py",
+    "sha256": "fce61a3256e376b566b8676c8b95f9c3082846881995af8cb0369af581938157",
+    "modified": false
+  },
+  "calibration_methods_match_legacy": true,
+  "validation": {
+    "native_regressions": 32,
+    "macro_regressions": 23,
+    "profile_staging_regressions": 7,
+    "deployment_startup_checks": 16,
+    "startup_live": true,
+    "physical_calibration_live": true,
+    "t2_independent_save_checks": 16,
+    "restart_persistence_checks": 9,
+    "t0_prompt_mainsail_checks": 13,
+    "manual_wait_abort_checks": 12,
+    "live_acceptance_complete": true,
+    "t3_independent_save_checks": 16,
+    "t3_restart_persistence_checks": 9,
+    "firmware_image_build": true,
+    "firmware_image_payload_checks": 5,
+    "firmware_image_flash_boot": true,
+    "t1_independent_save_checks": 16,
+    "t1_restart_persistence_checks": 9,
+    "stock_full_calibration_checks": 11,
+    "stock_full_pre_finish_checks": 10,
+    "stock_full_visual_confirmation": true,
+    "stock_full_restart_persistence_checks": 9,
+    "t2_initial_independent_save_checks": 15,
+    "full_to_single_transition_checks": 16,
+    "t2_post_full_restart_checks": 9,
+    "default_clean_and_validate_checks": 16,
+    "functional_live_acceptance_complete": true,
+    "tight_tolerance_validation_checks": 17,
+    "t0_prompt_fluidd_checks": 13,
+    "t0_prompt_fluidd_visual_confirmation": true,
+    "firmware_image_boot_checks": 20,
+    "firmware_image_post_flash_physical_cycle": true,
+    "firmware_image_post_flash_single_t2_checks": 16,
+    "firmware_image_post_flash_followup_complete": true,
+    "firmware_image_post_flash_restart_checks": 9,
+    "firmware_image_post_flash_validate_checks": 16
+  }
+}

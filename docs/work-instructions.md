@@ -6,7 +6,9 @@ title: Macro Work Instructions
 
 ## Before starting
 
-For troubleshooting, report the project version/date printed at the top of `70_tool_offsets.cfg` and your installed firmware build. Compare that version with the repository README; the package manifest provides exact file hashes when two copies need to be compared. Copies from the original live test may predate these version banners.
+For troubleshooting, report the project version/date printed at the top of `70_tool_offsets.cfg`, the installed native profile/version, and your firmware build. The PR760 native candidate is version `0.2.0-dev1` and reuses the unchanged version `0.1.0` CFG; different artifact versions are expected. The profile/package manifests provide exact file hashes. Copies from the original live test may predate these version banners.
+
+After a firmware update, check native support before using the calibration buttons: the CFG can survive while the required Python changes are replaced. A restart also clears the backup acknowledgement. See [Firmware compatibility](firmware-compatibility.md) for the two distinct guards and recovery steps. The exact captured PR760 profile has completed the planned live acceptance; see [Validation](validation.md) for the results and remaining limits.
 
 Use a printer that is idle, with no paused print or active virtual-SD job. Clear the bed and tool-change area. Confirm that the calibration ring is accessible and the tools have suitable filament loaded for the stock wiping routine.
 

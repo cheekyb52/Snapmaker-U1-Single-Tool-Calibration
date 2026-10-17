@@ -8,58 +8,63 @@
     },
     {
       "path": "AGENTS.md",
-      "bytes": 2226,
-      "sha256": "ae5b2bb608ee02d8b1ce93be494ab613567588a35b44e877bc312a35bf715f0c"
+      "bytes": 2914,
+      "sha256": "298a51984a8a1f0fb196e662374332c4f64cafaee6fff7511064a8d8d28160c6"
     },
     {
       "path": "CHANGELOG.md",
-      "bytes": 2206,
-      "sha256": "47577c5cf9944477b96fe3b1f3ddb7a43672dd9c5416a5f4d5ee9374d25973c3"
+      "bytes": 5340,
+      "sha256": "2aa14190dc67d3333b3b8ca765cfc5d814fb0ddec5944a578f3c3557bbedec67"
     },
     {
       "path": "docs/changes.md",
-      "bytes": 3611,
-      "sha256": "6f4965dce6ca66d81855c2fb01f0030efb869dd82e0970076161835a7690570d"
+      "bytes": 5636,
+      "sha256": "25ff77c8d4c0f553e172620e08a965a6d895d03e247d07fbb111a311701b008d"
     },
     {
       "path": "docs/codex-handoff.md",
-      "bytes": 6624,
-      "sha256": "8ce30521cb0dab1dace56871f392b475cfa454629063ccdff2f69a34056505e3"
+      "bytes": 7359,
+      "sha256": "8de5499a47afa4f8afbd54db73b4b222974228932cc6b1ae87e8c74d8c1f0765"
     },
     {
       "path": "docs/development.md",
-      "bytes": 3550,
-      "sha256": "0e6cfe7ce1600aa66d8c25581195915d61c4b3f233a8001ee3f2c992f1ecb761"
+      "bytes": 5428,
+      "sha256": "74a58fe87a6794b3a7a2d562f563f26c135321847dd61db937bb5436ebb2ca4a"
+    },
+    {
+      "path": "docs/firmware-compatibility.md",
+      "bytes": 7909,
+      "sha256": "b142493f25d27b17ad5ab60399faeefd65dfe152554f3f6dc4e3c950f80e4a0b"
     },
     {
       "path": "docs/implementation.md",
-      "bytes": 4317,
-      "sha256": "9a33848e80ef12309a818fb3710dabfad6e9bdf6fc216f029b9234eb6f49d0f4"
+      "bytes": 4382,
+      "sha256": "7ddb564016ad98460cec1898a0ffb5534afdf9f363b5f6754ccac53a4d20449a"
     },
     {
       "path": "docs/index.md",
-      "bytes": 933,
-      "sha256": "eaea6fa7f40c186f95372c33cb7e45146b14aab20a60a083edafa6d1d3a95792"
+      "bytes": 1637,
+      "sha256": "7f49a9831d4e6c7121c1ad75bca3a247d76c822d7c2a0e7d9c0eae6c92d6ea92"
     },
     {
       "path": "docs/installation.md",
-      "bytes": 5412,
-      "sha256": "7c3d9222e3f1c071a497b8ece4704384391ce2d7bb68e39d26980ddc3f676d7c"
+      "bytes": 7630,
+      "sha256": "cc099a1e6deab6553f78ef4f2583bc9207c268405f784aedd37a7d5f952817c1"
     },
     {
       "path": "docs/rollback.md",
-      "bytes": 2904,
-      "sha256": "c8176f24311d392dbbe6a2d287b1ead939f3b558ed97d536f92684281aa01a31"
+      "bytes": 2935,
+      "sha256": "ed76345a1f172d1fd69303916350fceeefe0bfc2d55c1d798297daa6c93c87ba"
     },
     {
       "path": "docs/validation.md",
-      "bytes": 3921,
-      "sha256": "56c3552db4d72553d28b475fccd4c24597381b4912e1296934eddc148c10d3a0"
+      "bytes": 12273,
+      "sha256": "3b4a78b44ac26584adc5d9da571a4cfaab2fb6247b57a443f23f58b50bb02b77"
     },
     {
       "path": "docs/work-instructions.md",
-      "bytes": 6069,
-      "sha256": "1c6135717f0bfdf4fdac7205b45056e00f88c09b7d0e68d03ebef7b25746c141"
+      "bytes": 6708,
+      "sha256": "4e1e2e8e568bfeece4a64fb9f4cbda5165fb5a635ee9aac8a87ca67f284bf21d"
     },
     {
       "path": "LICENSE",
@@ -68,8 +73,8 @@
     },
     {
       "path": "NOTICE.md",
-      "bytes": 2812,
-      "sha256": "6cbda08bec1bef43446fef75832e6d27ff98bd50db09ea5db929a7395b687bbd"
+      "bytes": 3597,
+      "sha256": "3169d4a0ae5f6380511ddbe1c9a25c1a1029755f2bad277ba23cde8dd885eb63"
     },
     {
       "path": "overlays/mods/tooloffsets/01-native/patches/home/lava/klipper/01_independent_tool_offsets.patch",
@@ -83,13 +88,28 @@
     },
     {
       "path": "privacy-report.json",
-      "bytes": 251,
-      "sha256": "59eb871fd79e2e5edb5eb5291650506f1673ce206a538876e3fa1f73c4968e31"
+      "bytes": 252,
+      "sha256": "5b666c15b0d5ea8c7c5d826234ec27f65d3eb77cfabc0721d3dc58b50f5c601f"
+    },
+    {
+      "path": "profiles/paxx-2.0-pr760/01-native/patches/home/lava/klipper/01_independent_tool_offsets.patch",
+      "bytes": 17342,
+      "sha256": "d0109f0268da22cc11ee77fde35345ebe7ec5a10995e4789665e23177e5b9e25"
+    },
+    {
+      "path": "profiles/paxx-2.0-pr760/manifest.json",
+      "bytes": 3653,
+      "sha256": "9644239e24bbcfec64b1225ebd38fb86e59b074c84ca37b419c5ed5304c1dc61"
+    },
+    {
+      "path": "profiles/paxx-2.0-pr760/validation.json",
+      "bytes": 25677,
+      "sha256": "4540064d855a02f3ebe801da8078ad2ca1807be4e7e5daf5622f4e5e044774b2"
     },
     {
       "path": "README.md",
-      "bytes": 5412,
-      "sha256": "e8289317df50325444ee3af2ac555090aede5b51c7a310a7b7f6a0ee9521604b"
+      "bytes": 8748,
+      "sha256": "a77fc4777d81fc0f1d41287ba02ef5e07c1326966e7c656a8d24290e8919dcef"
     },
     {
       "path": "requirements-dev.txt",
@@ -152,14 +172,49 @@
       "sha256": "9425ea928bbaf49677dd8362436ca9643899fb0213801b7b73549a38bc8b385f"
     },
     {
+      "path": "tests/native/pr760/baseline/klippy/extras/extruder_config_bak.py",
+      "bytes": 12758,
+      "sha256": "56be84ec9b7f30cfa496e86591fe5e767ce79d716fd93fdf112dabc25001e5da"
+    },
+    {
+      "path": "tests/native/pr760/baseline/klippy/extras/probe_inductance_coil.py",
+      "bytes": 100151,
+      "sha256": "5beaa343012a48c29953f4aece0d12967b85169f05a60973d0df897105ea185b"
+    },
+    {
+      "path": "tests/native/pr760/baseline/klippy/kinematics/extruder.py",
+      "bytes": 124627,
+      "sha256": "2085de67fb9a7d6c799a958c2a2ece639cc8f136f9dec792fa68eb2c359ce8f5"
+    },
+    {
+      "path": "tests/native/pr760/modified/klippy/extras/extruder_config_bak.py",
+      "bytes": 18329,
+      "sha256": "21cb0c7037eb0c2ee195704e8e81dfd5fad307ff5cb16a0c3ed981b006d0f302"
+    },
+    {
+      "path": "tests/native/pr760/modified/klippy/extras/probe_inductance_coil.py",
+      "bytes": 101045,
+      "sha256": "05196461cea7160eb9ffee5907a2332d12d1740349d8e65b1f3d7671fca545c8"
+    },
+    {
+      "path": "tests/native/pr760/modified/klippy/kinematics/extruder.py",
+      "bytes": 128397,
+      "sha256": "da375bfb97d065a1511829ae1f0d3d44531b18c4c39246439812a8989ceb5cae"
+    },
+    {
       "path": "tests/native/test_native.py",
-      "bytes": 29547,
-      "sha256": "bc4fa5567296eaa427223dbac17ce721c2a838736013d373d0e33b9243289c85"
+      "bytes": 30205,
+      "sha256": "bf9b9ed1b53775ad3c9f6ff90c7c2481e37088c75d28be23bc1e2a1a5e878437"
     },
     {
       "path": "tests/test_macros.py",
       "bytes": 17823,
       "sha256": "4a0439c84f66595858b1b1e7ba2bfcb306ec1fcd7c3ef5eb0ae22045f3dbcab1"
+    },
+    {
+      "path": "tests/test_profiles.py",
+      "bytes": 5190,
+      "sha256": "32a9577108b9730fae946b81f9a09f37ae93bea960d7a888c2df493dc3a0c7ee"
     },
     {
       "path": "tools/audit_project.py",
@@ -168,8 +223,8 @@
     },
     {
       "path": "tools/prepare_install.py",
-      "bytes": 6024,
-      "sha256": "5ffeea4d9471a29df6ae4810b3c8c960ba57d7a3343bf7829689325c27e77bda"
+      "bytes": 7637,
+      "sha256": "1c2679d5eec1f209bf29ab9eaf6b75bcb163ecd38ed07e9ce91f710a505b87f6"
     }
   ]
 }

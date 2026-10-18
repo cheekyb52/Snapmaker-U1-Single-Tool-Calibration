@@ -40,6 +40,10 @@ This repository does not include or modify Paxx's firmware builder. The original
 
 ## Publication audit
 
+The reviewed PR760 username mod is published on the author's fork in [usermod/independent-tool-calibration](https://github.com/cheekyb52/SnapmakerU1-Extended-Firmware/tree/usermod/independent-tool-calibration/overlays/mods/cheeky_b52). A separate [build branch](https://github.com/cheekyb52/SnapmakerU1-Extended-Firmware/tree/build/independent-tool-calibration) runs the personal workflow. It builds only `extended-cheeky_b52`, unpacks the generated image and verifies the same five payload hashes, then publishes an experimental prerelease with checksums, source identity, instructions and license files. Its release job is restricted to that personal fork and runs only after the build job succeeds.
+
+The standalone project's original 1.4 overlay is retained for reproducibility. It is not combined with the PR760 native patch. No upstream PR has been submitted; wider community testing is being collected first.
+
 Run `tools/audit_project.py` from the project root. It scans the publishable tree for captured media, private paths/addresses, private-key material, common credentials/tokens, raw dumps/logs, and unwanted project artifacts. Findings identify paths and lines without printing sensitive values. `.gitignore` alone is not the audit: files present in ignored locations are also findings.
 
 `privacy-report.json` records the final automated scan, and `package-manifest.json` records relative file paths, sizes, and SHA-256 hashes. The inventory excludes its own file. Review both and the package's file list before publishing. The audit is a bounded set of checks, not a guarantee against every possible secret format.

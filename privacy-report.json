@@ -1,7 +1,7 @@
 {
   "scope": "publishable calibration project only",
   "files_scanned": 46,
-  "bytes_scanned": 1256467,
+  "bytes_scanned": 1262767,
   "findings": [],
   "passed": true,
   "limitations": "Pattern checks plus file-type/scope review; not every secret format is detectable."

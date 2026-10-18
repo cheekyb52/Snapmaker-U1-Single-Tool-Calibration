@@ -75,6 +75,9 @@
     "firmware_image_post_flash_single_t2_checks": 16,
     "firmware_image_post_flash_followup_complete": true,
     "firmware_image_post_flash_restart_checks": 9,
-    "firmware_image_post_flash_validate_checks": 16
+    "firmware_image_post_flash_validate_checks": 16,
+    "personal_fork_ci_build": true,
+    "personal_fork_ci_packed_payload_checks": 5,
+    "experimental_prerelease_published": true
   }
 }

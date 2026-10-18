@@ -8,13 +8,13 @@
     },
     {
       "path": "AGENTS.md",
-      "bytes": 2914,
-      "sha256": "298a51984a8a1f0fb196e662374332c4f64cafaee6fff7511064a8d8d28160c6"
+      "bytes": 2990,
+      "sha256": "52784e293d0f7ac1b827d7c25f3f8084654937001b6c4518191ca4c452f75988"
     },
     {
       "path": "CHANGELOG.md",
-      "bytes": 5340,
-      "sha256": "2aa14190dc67d3333b3b8ca765cfc5d814fb0ddec5944a578f3c3557bbedec67"
+      "bytes": 5515,
+      "sha256": "d09bbadf2567c53e35beded189a7956f93460b623053734818c07083320e195a"
     },
     {
       "path": "docs/changes.md",
@@ -23,13 +23,13 @@
     },
     {
       "path": "docs/codex-handoff.md",
-      "bytes": 7359,
-      "sha256": "8de5499a47afa4f8afbd54db73b4b222974228932cc6b1ae87e8c74d8c1f0765"
+      "bytes": 7560,
+      "sha256": "002602aa3ff15753b47d931a6b8bc365cb09611e66d552e0067634b73c5a92d1"
     },
     {
       "path": "docs/development.md",
-      "bytes": 5428,
-      "sha256": "74a58fe87a6794b3a7a2d562f563f26c135321847dd61db937bb5436ebb2ca4a"
+      "bytes": 6348,
+      "sha256": "7f9245ed4b6152632edb49ec50dbeee76e64fdd83db33dbb0a8fc2da2fa4edbb"
     },
     {
       "path": "docs/firmware-compatibility.md",
@@ -63,8 +63,8 @@
     },
     {
       "path": "docs/work-instructions.md",
-      "bytes": 6708,
-      "sha256": "4e1e2e8e568bfeece4a64fb9f4cbda5165fb5a635ee9aac8a87ca67f284bf21d"
+      "bytes": 7788,
+      "sha256": "1aac6f6168eafb3e92cf4f43cc946a6eeed525711dc3bc1a2e083cc3eece8cf7"
     },
     {
       "path": "LICENSE",
@@ -89,7 +89,7 @@
     {
       "path": "privacy-report.json",
       "bytes": 252,
-      "sha256": "5b666c15b0d5ea8c7c5d826234ec27f65d3eb77cfabc0721d3dc58b50f5c601f"
+      "sha256": "7b7411689fd05432e52e01559315296d81752fbb50de000f1a98deb470b297c9"
     },
     {
       "path": "profiles/paxx-2.0-pr760/01-native/patches/home/lava/klipper/01_independent_tool_offsets.patch",
@@ -98,18 +98,18 @@
     },
     {
       "path": "profiles/paxx-2.0-pr760/manifest.json",
-      "bytes": 3653,
-      "sha256": "9644239e24bbcfec64b1225ebd38fb86e59b074c84ca37b419c5ed5304c1dc61"
+      "bytes": 3788,
+      "sha256": "75e2d80428a74d7416857865d1cbaf3eece60e034f818cbcaae386b5bb98b364"
     },
     {
       "path": "profiles/paxx-2.0-pr760/validation.json",
-      "bytes": 25677,
-      "sha256": "4540064d855a02f3ebe801da8078ad2ca1807be4e7e5daf5622f4e5e044774b2"
+      "bytes": 27850,
+      "sha256": "5d02fcb57156db17f03eefb6ed746e2e836e9f436809bf327703c51cc040e65f"
     },
     {
       "path": "README.md",
-      "bytes": 8748,
-      "sha256": "a77fc4777d81fc0f1d41287ba02ef5e07c1326966e7c656a8d24290e8919dcef"
+      "bytes": 10287,
+      "sha256": "d869e52beae2eae9a0f10dbc98a37d5c63819b63348a4cc39bed5694fa3e26dd"
     },
     {
       "path": "requirements-dev.txt",

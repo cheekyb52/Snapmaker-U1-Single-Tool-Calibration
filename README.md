@@ -21,6 +21,14 @@ Thank you to [Paxx](https://github.com/paxx12-snapmaker-u1) for [Snapmaker U1 Ex
 
 Profiles match all three native source hashes, rather than a release label. PR760 is a changing development PR; this candidate targets the captured source set only. The original 1.4 payload and shared macro CFG remain version `0.1.0`. A separate PR760 usermod candidate passed a full firmware-image build and five checks against the unpacked image. After the operator flashed it, 20 boot checks, 16 independent T2 save checks and nine settled restart checks passed. Post-flash clean/validate passed 16 checks with all six tool pairs within 0.05 mm. Planned printer testing is complete. See [Firmware compatibility](docs/firmware-compatibility.md).
 
+## Community testing
+
+[Experimental test build 2.1](https://github.com/cheekyb52/SnapmakerU1-Extended-Firmware/releases/tag/calibration-test-2-1) is available for community testing. [CI run #2](https://github.com/cheekyb52/SnapmakerU1-Extended-Firmware/actions/runs/39080632251) passed the firmware build, five packed-image payload checks and release checksum verification. Its calibration payload matches the locally flashed image; the separately built CI binary has not itself been flashed on the test printer.
+
+Experimental firmware builds are published in [the author's firmware fork](https://github.com/cheekyb52/SnapmakerU1-Extended-Firmware/releases), with the image, SHA-256 checksum, testing instructions and source identity. The [optional usermod source](https://github.com/cheekyb52/SnapmakerU1-Extended-Firmware/tree/usermod/independent-tool-calibration/overlays/mods/cheeky_b52) is kept separate from the fork's personal build workflow. Upstream submission is deferred while wider testing is collected.
+
+Read [Installation](docs/installation.md), [Work instructions](docs/work-instructions.md) and [Rollback](docs/rollback.md) before trying a build. Report results in [this project's issues](https://github.com/cheekyb52/Snapmaker-U1-Single-Tool-Calibration/issues), including the full firmware build, tool tested and relevant result/error text. Keep connection details and saved calibration tables private. The completed one-printer acceptance remains the evidence baseline; community testing extends that coverage.
+
 ## Features
 
 | Button | Behavior |

@@ -13,6 +13,6 @@ Read `README.md`, `docs/codex-handoff.md`, and `docs/installation.md` before wor
 - Keep default stock commands, probing, heating, and docking behavior intact. Do not implement adapters that replace native methods at runtime.
 - The operator drives motion, heating, nozzle cleaning, plate removal, and calibration buttons unless explicitly requesting otherwise. Do not infer that a nozzle was cleaned or a plate removed.
 - Keep credentials, addresses, serial numbers, calibration tables, backups, screenshots, and raw device logs outside this repository.
-- Upstream contributions require the owner's explicit authorization. Keep any authorized usermod contribution under `overlays/mods/cheeky_b52/`; keep personal build workflow changes in the owner's fork on a separate branch. Publishing requires the owner's specific destination and authorization.
+- Current publication is limited to the owner's standalone repository and personal firmware fork. The owner wants wider community testing before an upstream PR; do not open or submit one. Any future upstream contribution requires fresh explicit authorization. Keep the usermod under `overlays/mods/cheeky_b52/` and the personal build workflow on its separate fork branch.
 
 Speed tuning is deferred at the owner's request. Preserve six validation ring points, ten calibration ring points, and three XY repeat samples.

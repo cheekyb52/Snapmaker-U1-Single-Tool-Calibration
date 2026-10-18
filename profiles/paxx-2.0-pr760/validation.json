@@ -577,5 +577,60 @@
     "print_count_and_artifact_unspecified": true,
     "firmware_specific_print_test_procedure_unspecified": true,
     "measured_alignment_artifact_verified": false
+  },
+  "github_distribution": {
+    "repository": "cheekyb52/SnapmakerU1-Extended-Firmware",
+    "date": "2026-10-17",
+    "source_commit": "8560b90174aac9696bbfa0dfc8ffcc961e6dd952",
+    "firmware_version": "2.0.0-cheekyb52-calibration-2.1",
+    "run_url": "https://github.com/cheekyb52/SnapmakerU1-Extended-Firmware/actions/runs/39080632251",
+    "run_conclusion": "success",
+    "release_url": "https://github.com/cheekyb52/SnapmakerU1-Extended-Firmware/releases/tag/calibration-test-2-1",
+    "tag": "calibration-test-2-1",
+    "prerelease": true,
+    "packed_payload_checks_passed": 5,
+    "release_firmware_checksum_verified": true,
+    "firmware_sha256": "21962c743a9a4679dd5006a1ec78d273650bd41b39ee4d971bfac98939356151",
+    "assets": [
+      {
+        "name": "build-info.txt",
+        "bytes": 123,
+        "sha256": "902bb456337a449a415e93cccd55595566c55d5249f35873be2b5e1f66af74c3"
+      },
+      {
+        "name": "LICENSE",
+        "bytes": 35149,
+        "sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986"
+      },
+      {
+        "name": "NOTICE.md",
+        "bytes": 1407,
+        "sha256": "1e027b3fa86d7838a954a5cd8233d0e3cb230aff90003c1e3b3d0d3bd65d0c7a"
+      },
+      {
+        "name": "payload-sha256.txt",
+        "bytes": 597,
+        "sha256": "da9774198a32e938431a41d0b1bbcd90fd13483f11d5a88fb5195f294a45c7b2"
+      },
+      {
+        "name": "TESTING.md",
+        "bytes": 4556,
+        "sha256": "b41eb555dff6dd96ad82fbb8b3271c828fb2e1a593cea300c89602deb955b6e5"
+      },
+      {
+        "name": "U1_calibration.bin",
+        "bytes": 253553408,
+        "sha256": "21962c743a9a4679dd5006a1ec78d273650bd41b39ee4d971bfac98939356151"
+      },
+      {
+        "name": "U1_calibration.bin.sha256",
+        "bytes": 85,
+        "sha256": "d111e1023bca6e7b265c9085b5a8179eae9ec4ec124f013c2ee3efccb38e790a"
+      }
+    ],
+    "same_five_calibration_payload_hashes_as_locally_flashed_image": true,
+    "this_ci_binary_itself_flashed_on_test_printer": false,
+    "upstream_pr_created": false,
+    "purpose": "Experimental community testing before any upstream submission"
   }
 }

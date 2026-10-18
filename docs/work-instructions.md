@@ -93,3 +93,16 @@ At a manual-cleaning or plate-confirmation wait, **OFFSET_ABORT** exits and shut
 While idle, the console command `_SM_OFFSET_STATE` prints the macro's stage and last report. After a normal macro completion, verify idle state and zero heater targets.
 
 For stock full calibration, use the stock screen and its own confirmations. After it reports completion, press **Done/Finish** to exit and shut down heaters. Do not use **OFFSET_CONTINUE** for that stock touchscreen sequence.
+
+## Community test results
+
+Experimental images and their checksums are distributed through [the author's firmware fork](https://github.com/cheekyb52/SnapmakerU1-Extended-Firmware/releases). Source, build identity and testing instructions accompany each prerelease. Follow the backup and compatibility steps in [Installation](installation.md) before flashing or saving calibration.
+
+Share results in [the calibration project's issues](https://github.com/cheekyb52/Snapmaker-U1-Single-Tool-Calibration/issues). Useful details are:
+
+- Full firmware/test-build identifier and whether the test passed or failed.
+- Tool tested, nozzle/hotend changes, filament material and whether the reference tool stayed unchanged.
+- Confirmation that the other three tools stayed unchanged and whether a restart retained the result; keep the actual calibration table private.
+- Validation tolerances and PASS/FAIL, web UI used, and relevant error text if present.
+
+The project remains an experimental optional usermod while wider testing is collected. Upstream submission is deferred.

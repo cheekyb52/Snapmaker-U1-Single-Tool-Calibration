@@ -10,6 +10,8 @@ Implement this calibration feature on the owner's Snapmaker U1, preserving all o
 
 The fully live-tested build is `1.4.1.6_20260608141446`; it is evidence, not the new target's identity. A separate Paxx 2.0 PR760 candidate has completed the planned live acceptance, including saves/restarts, stock full calibration and transition back to an independent save, both validation paths, manual-wait abort and both web UI warnings; read [Firmware compatibility](firmware-compatibility.md) and its exact-source manifest. Obtain the actual target/build and authorized connection details privately. Never enable debug or factory mode. Upstream usermod contributions require the owner's explicit authorization and belong under the optional username mod; keep personal CI changes in the owner's fork on a separate branch.
 
+Current distribution uses the owner's standalone project and personal firmware fork for community testing. An upstream PR is deferred by the owner. Do not submit one without a new explicit request.
+
 The requested behavior is:
 
 - T1/T2/T3 each have an independent calibration button. Only the selected tool's saved base and applied offset may change.

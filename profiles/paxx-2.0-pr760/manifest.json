@@ -27,10 +27,14 @@
   "diff": "profiles/paxx-2.0-pr760/01-native/patches/home/lava/klipper/01_independent_tool_offsets.patch",
   "macro": {
     "path": "overlays/mods/tooloffsets/02-macros/root/usr/local/share/firmware-config/extended/klipper/70_tool_offsets.cfg",
-    "sha256": "5d73c5f489bccd124a6343f8b32968d52f29f8ab353cc45607f0ba556ac42ccd",
+    "sha256": "ea4733329ae5575a5b42d26284f8d79178f5153bdb2cbe832907df749625cde0",
     "live_tested_sha256": "d62e5e666b534b48efa0b6d658931908e793eeb6696c9ae6eb559cf96883a79a",
-    "project_version": "0.1.0",
-    "updated": "2026-10-12"
+    "project_version": "0.1.1",
+    "updated": "2026-10-18",
+    "previous_packaged_sha256": "5d73c5f489bccd124a6343f8b32968d52f29f8ab353cc45607f0ba556ac42ccd",
+    "button_start_default": true,
+    "require_backup_arm_default": false,
+    "revision_note": "Button-start revision; prior live acceptance used CFG 0.1.0. Native files unchanged."
   },
   "fixture_provenance": "Generic installed firmware source; excludes configuration, device data and credentials",
   "inspected_writer": {
@@ -41,7 +45,7 @@
   "calibration_methods_match_legacy": true,
   "validation": {
     "native_regressions": 32,
-    "macro_regressions": 23,
+    "macro_regressions": 25,
     "profile_staging_regressions": 7,
     "deployment_startup_checks": 16,
     "startup_live": true,
@@ -78,6 +82,9 @@
     "firmware_image_post_flash_validate_checks": 16,
     "personal_fork_ci_build": true,
     "personal_fork_ci_packed_payload_checks": 5,
-    "experimental_prerelease_published": true
+    "experimental_prerelease_published": true,
+    "previous_macro_regressions": 23,
+    "current_macro_live_tested": false,
+    "current_stock_cfg_migration_checks": 6
   }
 }

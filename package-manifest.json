@@ -8,33 +8,33 @@
     },
     {
       "path": "AGENTS.md",
-      "bytes": 2990,
-      "sha256": "52784e293d0f7ac1b827d7c25f3f8084654937001b6c4518191ca4c452f75988"
+      "bytes": 3229,
+      "sha256": "9085ab1429254f1fca01c8bf3a57731dc855a617ff1391a78ba97028aa82c1ce"
     },
     {
       "path": "CHANGELOG.md",
-      "bytes": 5515,
-      "sha256": "d09bbadf2567c53e35beded189a7956f93460b623053734818c07083320e195a"
+      "bytes": 6504,
+      "sha256": "ea95fa4f8ea34ec8bf079702b98fbe609e5b265fec0a7edd82505887a25bc886"
     },
     {
       "path": "docs/changes.md",
-      "bytes": 5636,
-      "sha256": "25ff77c8d4c0f553e172620e08a965a6d895d03e247d07fbb111a311701b008d"
+      "bytes": 5856,
+      "sha256": "162f10d17b8f1802d15b07f7c071e5670d1dae5610b9a492d7afa4e80b2987b0"
     },
     {
       "path": "docs/codex-handoff.md",
-      "bytes": 7560,
-      "sha256": "002602aa3ff15753b47d931a6b8bc365cb09611e66d552e0067634b73c5a92d1"
+      "bytes": 7908,
+      "sha256": "b65c0e97e0d050b65c5b3dff0b7787de4c6ff7a71007f7831a6838fe40b6de3b"
     },
     {
       "path": "docs/development.md",
-      "bytes": 6348,
-      "sha256": "7f9245ed4b6152632edb49ec50dbeee76e64fdd83db33dbb0a8fc2da2fa4edbb"
+      "bytes": 7823,
+      "sha256": "4009ed9f1f99201692f043ff891de7f20b143ebe645ee1bf04088d7657d77894"
     },
     {
       "path": "docs/firmware-compatibility.md",
-      "bytes": 7909,
-      "sha256": "b142493f25d27b17ad5ab60399faeefd65dfe152554f3f6dc4e3c950f80e4a0b"
+      "bytes": 8362,
+      "sha256": "377adbb2652833a5fbe355d793fea60c09737dc57f7dd71aad829ac7f2bd72d2"
     },
     {
       "path": "docs/implementation.md",
@@ -48,8 +48,8 @@
     },
     {
       "path": "docs/installation.md",
-      "bytes": 7630,
-      "sha256": "cc099a1e6deab6553f78ef4f2583bc9207c268405f784aedd37a7d5f952817c1"
+      "bytes": 7784,
+      "sha256": "1f3719fdc5618a01d06749010bba2ba3d018b08242d7fbab427b565112a8a76c"
     },
     {
       "path": "docs/rollback.md",
@@ -58,13 +58,13 @@
     },
     {
       "path": "docs/validation.md",
-      "bytes": 12273,
-      "sha256": "3b4a78b44ac26584adc5d9da571a4cfaab2fb6247b57a443f23f58b50bb02b77"
+      "bytes": 14093,
+      "sha256": "492d97ea4377e4225aca4e4acf8860c4eb71b44a617bf1d37d51a546fd7cba28"
     },
     {
       "path": "docs/work-instructions.md",
-      "bytes": 7788,
-      "sha256": "1aac6f6168eafb3e92cf4f43cc946a6eeed525711dc3bc1a2e083cc3eece8cf7"
+      "bytes": 9574,
+      "sha256": "4062e5ad6382ae930a3e573cceea7cb2ac3316f50f84039718d38f9d08bd1c8f"
     },
     {
       "path": "LICENSE",
@@ -73,8 +73,8 @@
     },
     {
       "path": "NOTICE.md",
-      "bytes": 3597,
-      "sha256": "3169d4a0ae5f6380511ddbe1c9a25c1a1029755f2bad277ba23cde8dd885eb63"
+      "bytes": 4150,
+      "sha256": "e06db6b6162d1bb8f5bd9677ed0390fe5febca24ad2ce8c32ec66a173f6c47d6"
     },
     {
       "path": "overlays/mods/tooloffsets/01-native/patches/home/lava/klipper/01_independent_tool_offsets.patch",
@@ -83,13 +83,13 @@
     },
     {
       "path": "overlays/mods/tooloffsets/02-macros/root/usr/local/share/firmware-config/extended/klipper/70_tool_offsets.cfg",
-      "bytes": 17743,
-      "sha256": "5d73c5f489bccd124a6343f8b32968d52f29f8ab353cc45607f0ba556ac42ccd"
+      "bytes": 18351,
+      "sha256": "ea4733329ae5575a5b42d26284f8d79178f5153bdb2cbe832907df749625cde0"
     },
     {
       "path": "privacy-report.json",
       "bytes": 252,
-      "sha256": "7b7411689fd05432e52e01559315296d81752fbb50de000f1a98deb470b297c9"
+      "sha256": "5d1ce3403b685c2cff8d7015f0d89a72567480f6eb639a0b1cc4211465c7a632"
     },
     {
       "path": "profiles/paxx-2.0-pr760/01-native/patches/home/lava/klipper/01_independent_tool_offsets.patch",
@@ -98,18 +98,18 @@
     },
     {
       "path": "profiles/paxx-2.0-pr760/manifest.json",
-      "bytes": 3788,
-      "sha256": "75e2d80428a74d7416857865d1cbaf3eece60e034f818cbcaae386b5bb98b364"
+      "bytes": 4112,
+      "sha256": "c51d9a7de68c35f64981876c2d9f0a0d211b3afc93e601a9ab4078e5fbca9b5c"
     },
     {
       "path": "profiles/paxx-2.0-pr760/validation.json",
-      "bytes": 27850,
-      "sha256": "5d02fcb57156db17f03eefb6ed746e2e836e9f436809bf327703c51cc040e65f"
+      "bytes": 31768,
+      "sha256": "b6e0dd052e37532d8ebb6587158a037742efca5dff6036b36967cc12932835fe"
     },
     {
       "path": "README.md",
-      "bytes": 10287,
-      "sha256": "d869e52beae2eae9a0f10dbc98a37d5c63819b63348a4cc39bed5694fa3e26dd"
+      "bytes": 11091,
+      "sha256": "627922d4750f431650a8517e08756b6a8e1a2d344c6553c5c7245f04376c0250"
     },
     {
       "path": "requirements-dev.txt",
@@ -153,8 +153,8 @@
     },
     {
       "path": "tests/native/manifest.json",
-      "bytes": 1861,
-      "sha256": "fdd1266b1fab57779ed0e66232bb47c34dd84dac1551816ca2cc29a7a9fe7c87"
+      "bytes": 2267,
+      "sha256": "443b9e7dac459d456f07708d9a6cb063a2fa787b25faf36695db2428d9a5a29d"
     },
     {
       "path": "tests/native/modified/klippy/extras/extruder_config_bak.py",
@@ -208,8 +208,8 @@
     },
     {
       "path": "tests/test_macros.py",
-      "bytes": 17823,
-      "sha256": "4a0439c84f66595858b1b1e7ba2bfcb306ec1fcd7c3ef5eb0ae22045f3dbcab1"
+      "bytes": 18903,
+      "sha256": "9d329cad1d7ee9772733a11ddbffee531750d0e311c612ef6e2efb122aca03c0"
     },
     {
       "path": "tests/test_profiles.py",

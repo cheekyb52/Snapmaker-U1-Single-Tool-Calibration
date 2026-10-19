@@ -187,7 +187,8 @@ class Checks(unittest.TestCase):
     def test_all_supported_tools_save_z_without_affecting_others(self):
         for target in (1, 2, 3):
             m = Machine()
-            m.run('OFFSET_ARM_SAVE', BACKUP='verified-test')
+            self.assertFalse(m.state['require_backup_arm'])
+            self.assertEqual(m.state['backup'], '')
             before = copy.deepcopy(m.base)
             applied = [m.p[n]['extruder_offset'][:] for n in NAMES]
             m.measurements = [[v + d for v, d in zip(p, [0.20, -0.25, 0.1])] for p in m.base]
@@ -320,11 +321,34 @@ class Checks(unittest.TestCase):
                 m.run('CLEAN_AND_VALIDATE_OFFSETS', HEAT_TEMP=value)
             self.assertFalse(m.trace)
 
-    def test_backup_is_required(self):
+    def test_optional_backup_guard_requires_explicit_acknowledgement(self):
         m = Machine()
-        with self.assertRaisesRegex(ValueError, 'verified backup arm'):
+        m.state['require_backup_arm'] = True
+        with self.assertRaisesRegex(ValueError, 'Run OFFSET_ARM_SAVE'):
             m.run('CALIBRATE_TOOL_1')
         self.assertFalse(m.trace)
+        m.run('OFFSET_ARM_SAVE', BACKUP='verified-test')
+        m.run('CALIBRATE_TOOL_1')
+        m.finish()
+        self.assertEqual(m.writes, [1])
+
+    def test_optional_backup_guard_rechecked_before_save(self):
+        m = Machine()
+        m.state['require_backup_arm'] = True
+        m.run('OFFSET_ARM_SAVE', BACKUP='verified-test')
+        m.run('CALIBRATE_TOOL_2')
+        m.state['backup'] = ''
+        with self.assertRaisesRegex(ValueError, 'acknowledgement is enabled but missing'):
+            m.finish()
+        self.assertFalse(m.writes)
+
+    def test_invalid_reference_or_target_blocks_without_backup_arm(self):
+        for params in ({'TOOL': 4}, {'TOOL': 2, 'REFERENCE': 2},
+                       {'TOOL': 2, 'REFERENCE': 4}):
+            m = Machine()
+            with self.assertRaisesRegex(ValueError, 'physical tool'):
+                m.run('_SM_OFFSET_BEGIN', MODE='single', **params)
+            self.assertFalse(m.trace)
 
     def test_printing_paused_active_and_unknown_block_all_actions(self):
         for state, active, paused in [('printing', False, False), ('paused', False, False),

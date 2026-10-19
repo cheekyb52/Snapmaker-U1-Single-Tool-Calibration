@@ -2,6 +2,15 @@
 
 ## Unreleased
 
+### 0.2.0-dev2 — 2026-10-18
+
+- Sync the personal firmware fork to upstream `b73cfc70e343a0f4bf5b178481818ef1175d3918`; keep native calibration payloads unchanged.
+- Gate inherited Cloudflare hosting on personal fork branches, with explicit opt-in through `ENABLE_CLOUDFLARE_DEPLOY=true`.
+- Register the exact old packaged CFG hash for stock config migration. Six Linux fixture checks verify upgrades and preservation of custom/unrelated files.
+
+CFG `0.1.1` starts T1/T2/T3 directly without a separate arming command by default. The previous acknowledgement is retained as optional `require_backup_arm`, disabled by default. Invalid target/reference errors are specific. Native source files, offset preservation, probe settings and manual cleaning/plate confirmations are unchanged. Offline coverage exercises unarmed T1/T2/T3 saves with other-tool preservation, optional-policy rejection/acceptance and its pre-save recheck. This revision has not yet been live-tested; the earlier 94-check and printer acceptance records remain historical.
+
+
 ### 0.2.0-dev1 — 2026-10-16 (acceptance updated 2026-10-17)
 
 - Port the calibration changes to the exact captured Paxx 2.0 PR760 source set in the same three native files, preserving newer nozzle properties, filament helpers and tool-change behavior. Keep the original 1.4 payload and shared CFG unchanged.

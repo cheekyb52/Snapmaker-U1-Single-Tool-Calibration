@@ -1,6 +1,8 @@
 # Snapmaker U1 Single Tool Calibration
 
-**Project version: 0.2.0-dev1 | Updated: 2026-10-17**
+**Project version: 0.2.0-dev2 | Updated: 2026-10-18**
+
+**Button-start update:** CFG `0.1.1` starts T1/T2/T3 directly from their buttons. Separate backup acknowledgement is optional and disabled by default. Native Python payloads are unchanged. The new CFG has offline coverage; the 2026-10-17 live evidence below used CFG `0.1.0`.
 
 Independent T1/T2/T3 calibration and a guided clean-and-validate workflow for the Snapmaker U1.
 
@@ -19,11 +21,13 @@ Thank you to [Paxx](https://github.com/paxx12-snapmaker-u1) for [Snapmaker U1 Ex
 | `stock-1.4.1.6` | Live validated on one U1 running `1.4.1.6_20260608141446` | [Original manifest](tests/native/manifest.json) |
 | `paxx-2.0-pr760` | Planned live acceptance passed, including all secondary tools, restarts, stock full, validation and both web UI warnings | [PR760 manifest](profiles/paxx-2.0-pr760/manifest.json) |
 
-Profiles match all three native source hashes, rather than a release label. PR760 is a changing development PR; this candidate targets the captured source set only. The original 1.4 payload and shared macro CFG remain version `0.1.0`. A separate PR760 usermod candidate passed a full firmware-image build and five checks against the unpacked image. After the operator flashed it, 20 boot checks, 16 independent T2 save checks and nine settled restart checks passed. Post-flash clean/validate passed 16 checks with all six tool pairs within 0.05 mm. Planned printer testing is complete. See [Firmware compatibility](docs/firmware-compatibility.md).
+Profiles match all three native source hashes, rather than a release label. PR760 is a changing development PR; this candidate targets the captured source set only. The original 1.4 native payload remains version `0.1.0`; the current shared macro CFG is `0.1.1`. A separate PR760 usermod candidate passed a full firmware-image build and five checks against the unpacked image. After the operator flashed it, 20 boot checks, 16 independent T2 save checks and nine settled restart checks passed. Post-flash clean/validate passed 16 checks with all six tool pairs within 0.05 mm. Planned printer testing is complete. See [Firmware compatibility](docs/firmware-compatibility.md).
 
 ## Community testing
 
-[Experimental test build 2.1](https://github.com/cheekyb52/SnapmakerU1-Extended-Firmware/releases/tag/calibration-test-2-1) is available for community testing. [CI run #2](https://github.com/cheekyb52/SnapmakerU1-Extended-Firmware/actions/runs/39080632251) passed the firmware build, five packed-image payload checks and release checksum verification. Its calibration payload matches the locally flashed image; the separately built CI binary has not itself been flashed on the test printer.
+[Experimental test build 5.1](https://github.com/cheekyb52/SnapmakerU1-Extended-Firmware/releases/tag/calibration-test-5-1) includes CFG `0.1.1` with direct T1/T2/T3 button start, built on the synced Paxx source. [CI run #5](https://github.com/cheekyb52/SnapmakerU1-Extended-Firmware/actions/runs/39185707988) passed the image build, five packed-payload hashes, stock CFG migration entry and release checksum checks. The native payload matches the previously flashed image. The new CFG and CI binary have not yet completed on-printer acceptance.
+
+Existing build 2.1 users can download [70_tool_offsets.cfg](https://github.com/cheekyb52/SnapmakerU1-Extended-Firmware/releases/download/calibration-test-5-1/70_tool_offsets.cfg) without reflashing. Back up the existing CFG/calibration data, review customizations, replace the existing CFG while idle and restart Klipper. A full firmware update automatically replaces an unmodified packaged old CFG; customized files are preserved with a new `.default`. See [the update instructions](docs/work-instructions.md#updating-an-existing-test-build).
 
 Experimental firmware builds are published in [the author's firmware fork](https://github.com/cheekyb52/SnapmakerU1-Extended-Firmware/releases), with the image, SHA-256 checksum, testing instructions and source identity. The [optional usermod source](https://github.com/cheekyb52/SnapmakerU1-Extended-Firmware/tree/usermod/independent-tool-calibration/overlays/mods/cheeky_b52) is kept separate from the fork's personal build workflow. Upstream submission is deferred while wider testing is collected.
 
@@ -57,7 +61,7 @@ The custom workflow uses the web console for manual confirmations. T0's warning 
 
 ## Validation
 
-94 offline checks pass: 32 native regressions per source profile, 23 shared macro checks and seven profile/staging checks. The original 1.4 live acceptance remains separate from the completed PR760 checks below, recorded on 2026-10-16–17.
+96 offline checks pass: 32 native regressions per source profile, 25 shared macro checks and seven profile/staging checks. The original 1.4 live acceptance remains separate from the completed PR760 checks below, recorded on 2026-10-16–17.
 
 | Case | Result |
 | --- | --- |

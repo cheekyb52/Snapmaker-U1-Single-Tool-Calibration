@@ -57,7 +57,7 @@ Deployment itself must not change saved calibration. Installation has no automat
 
 ## First use and acceptance
 
-Read [Macro Work Instructions](work-instructions.md), then acknowledge the locally verified backup using `OFFSET_ARM_SAVE BACKUP=<verified-backup-timestamp>`. This acknowledgement is cleared on restart and does not perform or verify a backup itself.
+Read [Macro Work Instructions](work-instructions.md), then press the desired T1/T2/T3 button. CFG 0.1.1 does not require a separate arming command by default. Installation and agent-driven persistent changes still require verified backups. Sites explicitly enabling `require_backup_arm` can use the optional `OFFSET_ARM_SAVE` acknowledgement; it clears on restart and does not create or verify a backup.
 
 Capture private before/after evidence for each secondary tool: saved bases, applied offsets, shared-reference metadata, active origin, controller state, and heater targets. Verify that only the selected tool changes. Check persistence across a normal process restart, stock full-calibration reference retirement, and validation with byte-identical saved JSON. See [Validation](validation.md) and [Codex Handoff](codex-handoff.md) for acceptance criteria. Physical cycles require the owner's request and manual confirmations.
 

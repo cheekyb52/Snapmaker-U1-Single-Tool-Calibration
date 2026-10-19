@@ -580,6 +580,103 @@
   },
   "github_distribution": {
     "repository": "cheekyb52/SnapmakerU1-Extended-Firmware",
+    "date": "2026-10-18",
+    "source_commit": "b3429bd45ea6079674019b7c216d4a7fe905f7a5",
+    "upstream_base": "b73cfc70e343a0f4bf5b178481818ef1175d3918",
+    "firmware_version": "2.0.0-cheekyb52-calibration-5.1",
+    "run_url": "https://github.com/cheekyb52/SnapmakerU1-Extended-Firmware/actions/runs/39185707988",
+    "run_conclusion": "success",
+    "release_url": "https://github.com/cheekyb52/SnapmakerU1-Extended-Firmware/releases/tag/calibration-test-5-1",
+    "tag": "calibration-test-5-1",
+    "prerelease": true,
+    "firmware_sha256": "fce0759b7c1571c2ac433bd3a660744a6edc5dc83a5b4fc6c1d4537644ca319f",
+    "assets": [
+      {
+        "name": "70_tool_offsets.cfg",
+        "bytes": 18351,
+        "sha256": "ea4733329ae5575a5b42d26284f8d79178f5153bdb2cbe832907df749625cde0"
+      },
+      {
+        "name": "build-info.txt",
+        "bytes": 123,
+        "sha256": "1ae71c41387ac0ed99dfaad8d415905be0fb8cbbcee1406e0423c15bf37dfef1"
+      },
+      {
+        "name": "LICENSE",
+        "bytes": 35149,
+        "sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986"
+      },
+      {
+        "name": "NOTICE.md",
+        "bytes": 1565,
+        "sha256": "6e0c2278d098757e9006e6dfb8d07b9e43795dee30c3ecf5000307ad3ede18bf"
+      },
+      {
+        "name": "payload-sha256.txt",
+        "bytes": 597,
+        "sha256": "dcf58aee45f0dde5ef9c02a5022deb82744d0fe0807fece3b64e0d8a5fe634bf"
+      },
+      {
+        "name": "TESTING.md",
+        "bytes": 5474,
+        "sha256": "1900fa68cf9ad11e02b179cdc6c1f1496bd486da3dbde06ffe04971b807261c1"
+      },
+      {
+        "name": "U1_calibration.bin",
+        "bytes": 253549312,
+        "sha256": "fce0759b7c1571c2ac433bd3a660744a6edc5dc83a5b4fc6c1d4537644ca319f"
+      },
+      {
+        "name": "U1_calibration.bin.sha256",
+        "bytes": 85,
+        "sha256": "085fe2da2add5a23330fff6975c44b95bf940d1f712fd30b64dca69111938949"
+      }
+    ],
+    "payload_sha256": {
+      "home/lava/klipper/klippy/kinematics/extruder.py": "da375bfb97d065a1511829ae1f0d3d44531b18c4c39246439812a8989ceb5cae",
+      "home/lava/klipper/klippy/extras/extruder_config_bak.py": "21cb0c7037eb0c2ee195704e8e81dfd5fad307ff5cb16a0c3ed981b006d0f302",
+      "home/lava/klipper/klippy/extras/probe_inductance_coil.py": "05196461cea7160eb9ffee5907a2332d12d1740349d8e65b1f3d7671fca545c8",
+      "home/lava/klipper/klippy/queuefile.py": "fce61a3256e376b566b8676c8b95f9c3082846881995af8cb0369af581938157",
+      "usr/local/share/firmware-config/extended/klipper/70_tool_offsets.cfg": "ea4733329ae5575a5b42d26284f8d79178f5153bdb2cbe832907df749625cde0"
+    },
+    "stock_cfg_migration_entry_verified": true,
+    "native_payload_hashes_match_previously_flashed_image": true,
+    "macro_version": "0.1.1",
+    "this_ci_binary_itself_flashed_on_test_printer": false,
+    "new_cfg_live_tested": false,
+    "upstream_pr_created": false
+  },
+  "macro_revision_2026_10_18": {
+    "date": "2026-10-18",
+    "project_version": "0.2.0-dev2",
+    "macro_version": "0.1.1",
+    "macro_sha256": "ea4733329ae5575a5b42d26284f8d79178f5153bdb2cbe832907df749625cde0",
+    "default_backup_arm_required": false,
+    "native_payloads_unchanged": true,
+    "native_source_profiles": "stock-1.4.1.6 and paxx-2.0-pr760",
+    "offline_checks_passed": 96,
+    "macro_checks_passed": 25,
+    "stock_migration_checks_passed": 6,
+    "migration_checks_url": "https://github.com/cheekyb52/SnapmakerU1-Extended-Firmware/actions/runs/39185718692",
+    "migration_check_source_commit": "196e8c00c2973e152891c065476dd8b51e16f409",
+    "unmodified_packaged_old_cfg_migrates": true,
+    "custom_cfg_preserved_with_new_default": true,
+    "unrelated_cfg_files_preserved": true,
+    "new_cfg_live_tested": false,
+    "upstream_build_base": "b73cfc70e343a0f4bf5b178481818ef1175d3918",
+    "usermod_commit": "1394f4855e3c4312e0fddd915acf3e13dd680ac9",
+    "build_commit": "b3429bd45ea6079674019b7c216d4a7fe905f7a5",
+    "build_run_url": "https://github.com/cheekyb52/SnapmakerU1-Extended-Firmware/actions/runs/39185707988",
+    "firmware_base_live_tested_commit": "4bd40f7eb4e396d275c7ede0b7f15d0788588696",
+    "paxx_changes_reviewed_without_calibration_or_normal_extended_build_input_changes": true,
+    "debug_mode_used": false,
+    "printer_interactions": false,
+    "upstream_pr_created": false,
+    "firmware_build_passed": true,
+    "release_url": "https://github.com/cheekyb52/SnapmakerU1-Extended-Firmware/releases/tag/calibration-test-5-1"
+  },
+  "previous_github_distribution": {
+    "repository": "cheekyb52/SnapmakerU1-Extended-Firmware",
     "date": "2026-10-17",
     "source_commit": "8560b90174aac9696bbfa0dfc8ffcc961e6dd952",
     "firmware_version": "2.0.0-cheekyb52-calibration-2.1",

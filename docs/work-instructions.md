@@ -6,21 +6,17 @@ title: Macro Work Instructions
 
 ## Before starting
 
-For troubleshooting, report the project version/date printed at the top of `70_tool_offsets.cfg`, the installed native profile/version, and your firmware build. The PR760 native candidate is version `0.2.0-dev1` and reuses the unchanged version `0.1.0` CFG; different artifact versions are expected. The profile/package manifests provide exact file hashes. Copies from the original live test may predate these version banners.
+For troubleshooting, report the project version/date printed at the top of `70_tool_offsets.cfg`, the installed native profile/version, and your firmware build. The PR760 native candidate is version `0.2.0-dev1` and reuses the shared version `0.1.1` CFG; different artifact versions are expected. The profile/package manifests provide exact file hashes. Copies from the original live test may predate these version banners.
 
-After a firmware update, check native support before using the calibration buttons: the CFG can survive while the required Python changes are replaced. A restart also clears the backup acknowledgement. See [Firmware compatibility](firmware-compatibility.md) for the two distinct guards and recovery steps. The exact captured PR760 profile has completed the planned live acceptance; see [Validation](validation.md) for the results and remaining limits.
+After a firmware update, check native support before using the calibration buttons: the CFG can survive while the required Python changes are replaced. A restart clears an optional backup acknowledgement; default button use does not require it. See [Firmware compatibility](firmware-compatibility.md) for the two distinct guards and recovery steps. The exact captured PR760 profile has completed the planned live acceptance; see [Validation](validation.md) for the results and remaining limits.
 
 Use a printer that is idle, with no paused print or active virtual-SD job. Clear the bed and tool-change area. Confirm that the calibration ring is accessible and the tools have suitable filament loaded for the stock wiping routine.
 
 For single-tool calibration, the reference tool must have unchanged hardware and a trustworthy calibration. T0 is the default reference. If T0's hotend or reference calibration changed, use stock **Multi-Toolhead Calibration** for all four tools.
 
-Complete the verified local backup described in [Installation](installation.md). Acknowledge that backup for the current session:
+After installation, press the selected calibration button directly. No console command or separate backup acknowledgement is required by the default configuration. Follow the nozzle-cleaning and plate-removal prompts during the cycle.
 
-```gcode
-OFFSET_ARM_SAVE BACKUP=<verified-backup-timestamp>
-```
-
-The identifier acknowledges a backup that you verified locally. The printer cannot inspect your computer's backup. The arm remains available for that session and clears on restart. Validation does not save calibration and does not need an arm.
+Verified recovery backups remain part of installation and agent-driven persistent changes; see [Installation](installation.md). The macro does not create or verify those backups. Sites that want the previous acknowledgement requirement can enable `variable_require_backup_arm: True` in `_SM_OFFSET_STATE`; see [Optional backup acknowledgement](#optional-backup-acknowledgement).
 
 ## Buttons
 
@@ -33,13 +29,13 @@ The identifier acknowledges a backup that you verified locally. The printer cann
 | `CLEAN_AND_VALIDATE_OFFSETS` | Clean and measure all four tools; evaluate all six pairs | No |
 | `OFFSET_CONTINUE` | Confirm manual nozzle cleaning or PEI plate removal | No direct save; it may advance a single-tool cycle to its save |
 | `OFFSET_ABORT` | Exit a pending macro cycle through the stock cleanup macro | Does not undo an earlier save |
-| `OFFSET_ARM_SAVE` | Acknowledge the verified backup for a writing session | No |
+| `OFFSET_ARM_SAVE` | Optional acknowledgement for sites enabling `require_backup_arm` | No |
 
 Tool numbers are physical T0–T3. The workflow bypasses slicer tool mapping.
 
 ## Single-tool calibration
 
-1. Arm the verified backup and press the selected T1, T2, or T3 calibration button.
+1. Press the selected T1, T2, or T3 calibration button.
 2. The cycle preheats and homes, then heats and wipes the reference nozzle.
 3. Clean the nozzle presented to you. Press **OFFSET_CONTINUE** only after cleaning it.
 4. The cycle cools that nozzle and repeats cleaning for the selected tool. Clean it and press **OFFSET_CONTINUE**.
@@ -93,6 +89,22 @@ At a manual-cleaning or plate-confirmation wait, **OFFSET_ABORT** exits and shut
 While idle, the console command `_SM_OFFSET_STATE` prints the macro's stage and last report. After a normal macro completion, verify idle state and zero heater targets.
 
 For stock full calibration, use the stock screen and its own confirmations. After it reports completion, press **Done/Finish** to exit and shut down heaters. Do not use **OFFSET_CONTINUE** for that stock touchscreen sequence.
+
+## Optional backup acknowledgement
+
+The default is `variable_require_backup_arm: False`. Leave it unchanged for direct button use. To require an explicit acknowledgement under your own operating policy, set it to `True`, reload the configuration, and acknowledge a verified backup before starting a single-tool cycle:
+
+```gcode
+OFFSET_ARM_SAVE BACKUP=<verified-backup-timestamp>
+```
+
+This optional acknowledgement does not create or verify a backup and clears on restart. The command remains compatible with older workflows. Validation never requires it. A missing acknowledgement blocks before heating and is checked again before saving when this option is enabled.
+
+## Updating an existing test build
+
+Users of `calibration-test-2-1` already have the required native Python support. They can use the standalone `70_tool_offsets.cfg` asset from the newer release without reflashing firmware: while idle, back up the existing CFG and saved calibration data, review the new CFG against any local temperature/tolerance customizations, replace the existing `extended/klipper/70_tool_offsets.cfg`, and restart Klipper to load it. Then the T1/T2/T3 buttons start directly. The CFG's header must identify version `0.1.1` dated `2026-10-18`.
+
+The new firmware build automatically updates an unmodified packaged CFG 0.1.0 through Paxx's stock checksum-based config cleanup. Customized CFGs are preserved and receive a `.default` copy. A firmware update may therefore preserve a customized older persistent CFG. Compare its header/hash with the release asset after updating; replace a surviving CFG 0.1.0 using the same backed-up procedure. Native capability checks still apply on other firmware builds.
 
 ## Community test results
 

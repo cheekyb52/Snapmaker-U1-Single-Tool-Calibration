@@ -6,7 +6,7 @@ title: Development
 
 ## Local checks
 
-The current project candidate version/date appears at the top of the README. Native patch/source banners and their manifests identify each payload's version. The original 1.4 payload and shared macro CFG remain at `0.1.0`; the separate PR760 native candidate is `0.2.0-dev1`. Update a changed payload's banner and matching manifest together. Do not relabel old live evidence as validation of a new firmware profile. Regenerate the privacy report and package inventory after changes.
+The current project candidate version/date appears at the top of the README. Native patch/source banners and their manifests identify each payload's version. The original 1.4 native payload remains `0.1.0`; the PR760 native payload remains `0.2.0-dev1`. Project `0.2.0-dev2` uses shared CFG `0.1.1`, which removes mandatory backup arming from default button use. Historical live evidence used CFG `0.1.0`. Update a changed payload's banner and matching manifest together. Do not relabel old live evidence as validation of a new firmware profile. Regenerate the privacy report and package inventory after changes.
 
 Use Python 3.10 or later in a local development environment:
 
@@ -16,7 +16,7 @@ python -m unittest tests.native.test_native tests.test_macros tests.test_profile
 python tools/audit_project.py
 ```
 
-The first command runs 62 checks: 32 for the original native profile, 23 shared macro checks and seven profile/staging checks. Run the same 32 native checks in a fresh process with `U1_CALIBRATION_PROFILE=paxx-2.0-pr760` for **94 total**. For example in PowerShell:
+The first command runs 64 checks: 32 for the original native profile, 25 shared macro checks and seven profile/staging checks. Run the same 32 native checks in a fresh process with `U1_CALIBRATION_PROFILE=paxx-2.0-pr760` for **96 total**. For example in PowerShell:
 
 ```powershell
 $env:U1_CALIBRATION_PROFILE = 'paxx-2.0-pr760'
@@ -49,3 +49,13 @@ Run `tools/audit_project.py` from the project root. It scans the publishable tre
 `privacy-report.json` records the final automated scan, and `package-manifest.json` records relative file paths, sizes, and SHA-256 hashes. The inventory excludes its own file. Review both and the package's file list before publishing. The audit is a bounded set of checks, not a guarantee against every possible secret format.
 
 Keep private backups and device evidence outside this tree. Required upstream copyright notices are preserved; the upstream authors' public copyright contact is attribution, not the owner's private information. Only this calibration project belongs in the owner's chosen repository.
+
+## Personal fork integration
+
+Keep usermod shell scripts in Unix LF format with executable Git modes. The personal build checks this before compiling; Windows CRLF shebangs cannot run in the Linux firmware builder. When staging text with Python on Windows, write UTF-8 bytes or explicitly use `newline='\n'`.
+
+The fork includes upstream develop commit `b73cfc70e343a0f4bf5b178481818ef1175d3918`. The net upstream changes add the separate multiACE mod and related docs/CI; the calibration sources and normal extended build inputs are unchanged. The calibration build remains `extended-cheeky_b52`. The original source-profile hash guards stay enabled.
+
+The fork's `main` and `develop` branches carry one personal Cloudflare workflow guard: hosting is skipped unless the repository variable `ENABLE_CLOUDFLARE_DEPLOY` is exactly `true`. Enabling it also requires the owner's own Cloudflare credentials and project configuration. The calibration build/release workflow is separate. No hosting credentials were added.
+
+[Six Linux migration checks](https://github.com/cheekyb52/SnapmakerU1-Extended-Firmware/actions/runs/39185718692) exercise the actual usermod guard and stock S49 config startup script with temporary fixtures. They cover hash rejection, idempotent migration registration, packaged-old upgrade, customized-CFG preservation, current-CFG preservation and unrelated-file preservation.

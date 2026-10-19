@@ -4,6 +4,10 @@ title: Validation Results
 
 # Validation Results
 
+## Button-start revision — 2026-10-18
+
+CFG `0.1.1` starts T1/T2/T3 directly without a separate arming command by default. The previous acknowledgement is retained as optional `require_backup_arm`, disabled by default. Invalid target/reference errors are specific. Native source files, offset preservation, probe settings and manual cleaning/plate confirmations are unchanged. Offline coverage exercises unarmed T1/T2/T3 saves with other-tool preservation, optional-policy rejection/acceptance and its pre-save recheck. This revision has not yet been live-tested; the earlier 94-check and printer acceptance records remain historical.
+
 ## PR760 acceptance — 2026-10-16–17
 
 Candidate `0.2.0-dev1` targets the exact source set in [the PR760 manifest](../profiles/paxx-2.0-pr760/manifest.json). It passes 32 native regressions. The unchanged 1.4 profile passes 32, shared macro checks pass 23, and profile/staging checks pass seven: **94 offline checks passed**. Tests cover exact patch application, source-profile selection, rejection of mixed sources and preservation of unrelated newer firmware code.
@@ -112,3 +116,11 @@ On 2026-10-17, the owner reported having printed using these macros and that the
 - Validation detects relative registration, not absolute bed height or a common translation of all tools.
 - The original 1.4 standalone overlay has not been built or flashed as a firmware image. A separate PR760 username usermod candidate passed a complete builder run and five checks against its unpacked image; the operator subsequently flashed it and it passed 20 boot, 16 independent T2 save and nine settled restart checks. The complete earlier live matrix uses the backed-up manual deployment; post-flash default validation passed all 16 checks with all six pairs in tolerance and no calibration changes. The planned printer test matrix is complete.
 - Performance tuning is deferred. The validated probe phase took about 8.1 minutes in one polling-based observation; total cycle time includes heating, cooling, and operator waits.
+
+## Stock CFG migration fixtures — 2026-10-18
+
+Six checks passed using the actual updated macro build guard and Paxx's stock S49 config startup script on isolated Linux fixtures. An exact packaged CFG 0.1.0 is removed by the existing checksum cleanup and replaced by CFG 0.1.1. Customized CFGs are preserved with a new `.default`; current CFGs and unrelated files remain unchanged. The guard rejects a wrong macro hash and does not duplicate migration entries on a second run. [CI evidence](https://github.com/cheekyb52/SnapmakerU1-Extended-Firmware/actions/runs/39185718692). These checks access no printer and do not establish live acceptance of CFG 0.1.1.
+
+## Button-start firmware build — 2026-10-18
+
+[Experimental build 5.1](https://github.com/cheekyb52/SnapmakerU1-Extended-Firmware/releases/tag/calibration-test-5-1) passed [CI run #5](https://github.com/cheekyb52/SnapmakerU1-Extended-Firmware/actions/runs/39185707988). The build validates Unix script line endings, all native/source guards, five packed payload hashes, the old-CFG migration entry and the downloaded firmware checksum before publication. The release includes the CFG separately for existing users. Native payload hashes match the earlier flashed image; CFG 0.1.1 and this new image still await on-printer acceptance.

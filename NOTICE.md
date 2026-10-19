@@ -2,6 +2,10 @@
 
 This project is distributed under GPL-3.0. See [LICENSE](LICENSE).
 
+## Button-start macro revision — 2026-10-18
+
+Project `0.2.0-dev2` updates the shared macro CFG to `0.1.1`. Secondary-tool buttons start directly by default; explicit backup acknowledgement remains an optional site policy. Native source payloads are unchanged. Prior live acceptance used CFG `0.1.0`; the new CFG has offline coverage and awaits live confirmation. The personal firmware fork is synced to upstream commit `b73cfc70e343a0f4bf5b178481818ef1175d3918` for the new build. Existing upstream copyright and license notices remain in place.
+
 ## PR760 port — 2026-10-16
 
 Candidate version `0.2.0-dev1` reapplies this project's calibration modifications to a separately captured Paxx 2.0 source set identified by its [manifest](profiles/paxx-2.0-pr760/manifest.json). The original and modified PR760 firmware sources are included for review and reproducible tests, with their upstream notices preserved. Unrelated newer firmware code is retained. The shared macro and original 1.4 native payload are unchanged. The candidate has completed the planned offline and live acceptance, plus a separate usermod image build, operator-driven flash/boot checks and post-flash T2 save/restart/default validation, with no upstream submission; see [Firmware compatibility](docs/firmware-compatibility.md).

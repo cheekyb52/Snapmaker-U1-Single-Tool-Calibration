@@ -26,8 +26,14 @@
   "updated": "2026-10-12",
   "macro": {
     "path": "overlays/mods/tooloffsets/02-macros/root/usr/local/share/firmware-config/extended/klipper/70_tool_offsets.cfg",
-    "sha256": "5d73c5f489bccd124a6343f8b32968d52f29f8ab353cc45607f0ba556ac42ccd",
-    "live_tested_sha256": "d62e5e666b534b48efa0b6d658931908e793eeb6696c9ae6eb559cf96883a79a"
+    "sha256": "ea4733329ae5575a5b42d26284f8d79178f5153bdb2cbe832907df749625cde0",
+    "live_tested_sha256": "d62e5e666b534b48efa0b6d658931908e793eeb6696c9ae6eb559cf96883a79a",
+    "previous_packaged_sha256": "5d73c5f489bccd124a6343f8b32968d52f29f8ab353cc45607f0ba556ac42ccd",
+    "project_version": "0.1.1",
+    "updated": "2026-10-18",
+    "button_start_default": true,
+    "require_backup_arm_default": false,
+    "revision_note": "Button-start revision; prior live acceptance used CFG 0.1.0. Native files unchanged."
   },
-  "version_metadata_note": "Comment-only banners added after live acceptance; Python AST and parsed macro configuration unchanged."
+  "version_metadata_note": "Native comment-only banners remain as originally validated. CFG 0.1.1 changes the backup acknowledgement default; prior live evidence is retained separately."
 }

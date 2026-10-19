@@ -12,6 +12,8 @@ The fully live-tested build is `1.4.1.6_20260608141446`; it is evidence, not the
 
 Current distribution uses the owner's standalone project and personal firmware fork for community testing. An upstream PR is deferred by the owner. Do not submit one without a new explicit request.
 
+Current project `0.2.0-dev2` uses CFG `0.1.1`: secondary-tool buttons start directly without a separate arming command. `require_backup_arm` is an optional site policy, disabled by default. Agent backup rules still apply before actual persistent writes. Prior live evidence used CFG `0.1.0`; do not relabel it as a live test of the new default.
+
 The requested behavior is:
 
 - T1/T2/T3 each have an independent calibration button. Only the selected tool's saved base and applied offset may change.

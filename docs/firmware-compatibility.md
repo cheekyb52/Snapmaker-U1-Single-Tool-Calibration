@@ -4,7 +4,7 @@ title: Firmware Compatibility
 
 # Firmware Compatibility
 
-**Candidate version: 0.2.0-dev1 | Updated: 2026-10-17**
+**Project version: 0.2.0-dev2 | Updated: 2026-10-18**
 
 ## Source profiles
 
@@ -15,7 +15,7 @@ title: Firmware Compatibility
 
 [Paxx PR760](https://github.com/paxx12-snapmaker-u1/SnapmakerU1-Extended-Firmware/pull/760) is a development PR whose contents can change. Its name does not identify an immutable firmware image. The captured pre-flash Klipper reported `2.0.0-paxx12-test-pr-760`; the [PR760 manifest](../profiles/paxx-2.0-pr760/manifest.json) identifies its reviewed source set by SHA-256. No claim is made that it matches every PR760 download, its current head, or every 2.0 release.
 
-The [original manifest](../tests/native/manifest.json), patch, source fixtures, and live acceptance record remain intact. The shared macro CFG is also unchanged at version 0.1.0. Candidate version 0.2.0-dev1 identifies the new native port and project tooling/documentation.
+The [original manifest](../tests/native/manifest.json), patch, source fixtures, and live acceptance record remain intact. Historical live acceptance used CFG 0.1.0. The current shared CFG is 0.1.1, with direct button start by default and optional backup acknowledgement; native payloads are unchanged. Candidate version 0.2.0-dev1 identifies the new native port and project tooling/documentation.
 
 ## What changed in the firmware
 
@@ -35,10 +35,11 @@ A firmware update can leave the custom CFG installed while replacing the native 
 
 | Symptom | Meaning | Required action |
 | --- | --- | --- |
-| `Single calibration needs T1/T2/T3, an unchanged reference, and a verified backup arm.` | The single-calibration input/backup guard rejected the request; after a restart the backup acknowledgement is empty | Obtain and verify fresh backups before acknowledging the session |
+| `Single calibration needs T1/T2/T3, an unchanged reference, and a verified backup arm.` | Older CFG 0.1.0 requires a separate acknowledgement | Update to CFG 0.1.1 for default direct button use, or follow the older documented acknowledgement procedure |
+| `Backup acknowledgement is enabled. Run OFFSET_ARM_SAVE...` | CFG 0.1.1 has the optional `require_backup_arm` policy enabled | Acknowledge your verified backup under that site policy; the default configuration does not require this step |
 | `Independent saves require the native preserve-reference patch. Saving is blocked.` | The loaded backend does not expose the independent-save capability | Match/adapt, review and install the native patch; rearming alone cannot fix it |
 
-Do not bypass either guard. An older native setter can ignore `PRESERVE_REFERENCE=1` and use ordinary recentering semantics.
+Keep the native capability and source checks enabled. An older native setter can ignore `PRESERVE_REFERENCE=1` and use ordinary recentering semantics. The backup acknowledgement is a separate optional site policy in CFG 0.1.1.
 
 1. Read live print/SD/pause state before every printer interaction. Leave active or paused jobs read-only.
 2. Back up and verify the current config and native files, including the calibration JSON and atomic writer. Preserve these as the new firmware's recovery originals.
@@ -46,7 +47,7 @@ Do not bypass either guard. An older native setter can ignore `PRESERVE_REFERENC
 4. Match all three source hashes to a supported profile. If any differ, stop automatic patching and adapt to those actual sources.
 5. Stage the selected patch locally, compile, review its scope and run tests. Never overwrite new firmware files with the full 1.4 fixtures.
 6. When installation is authorized, follow [Installation](installation.md): replace only reviewed files, restart the actual Klipper process, then verify capability, hashes, unchanged saved JSON, all applied offsets and active origin.
-7. After restart, acknowledge the verified backup for the current session with `OFFSET_ARM_SAVE BACKUP=<verified-backup-timestamp>`. The operator starts the physical acceptance cycles.
+7. The operator starts physical acceptance using the selected tool button. Only sites explicitly enabling `require_backup_arm` need the optional `OFFSET_ARM_SAVE` acknowledgement after restart.
 
 Backups contain private device data and stay outside this repository. Recovery uses the actual firmware build's matched code and calibration data; see [Rollback](rollback.md).
 
